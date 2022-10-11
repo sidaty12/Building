@@ -1,6 +1,19 @@
 
     <div class="card">
-      <img class="propImg" src="assets/images/home-default.jpg">
+      <div class="card-img-wrapper">
+        <img class="card-img-top" src="assets/images/home-default.jpg">
+        <ul classe="list-inline text-centre member-icons animate">
+          <li class="list-inline-item">
+            <button class="btn btn-primary">
+              <i class="fa-regular fa-pen-to-square"></i>  </button>
+          </li>
+          <li class="list-inline-item">
+            <button class="btn btn-primary">
+              <i class="fa-regular fa-address-book"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
       <div class="card-body p-1">
         <h1>{{property.Name}}</h1>
         <h1>{{property.Type}}</h1>
