@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HousingService } from 'src/app/services/housing.service';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-propert-list',
@@ -6,47 +8,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./propert-list.component.css']
 })
 export class PropertListComponent implements OnInit {
-  properties: Array<any> = [
-    {
-    "Id": 1,
-    "Name":"Birla House",
-    "Type":"House",
-    "Price":12000
-    },
-    {
-      "Id": 2,
-      "Name":"Erose Villa",
-      "Type":"House",
-      "Price":15000
-      },
-      {
-        "Id": 3,
-        "Name":"Pearl White House",
-        "Type":"House",
-        "Price":18000
-        },
-        {
-        "Id": 3,
-        "Name":"Pearl White House",
-        "Type":"House",
-        "Price":18000
-        },
-        {
-          "Id": 3,
-          "Name":"Pearl White House",
-          "Type":"House",
-          "Price":18000
-          },
-          {
-            "Id": 3,
-            "Name":"Pearl White House",
-            "Type":"House",
-            "Price":18000
-            }
-]
-  constructor() { }
+ public properties: any;
 
-  ngOnInit() {
+  //injectd variabel to get the list of building
+  constructor(private housingService: HousingService) { }
+
+  ngOnInit() : void{
+
+     this.housingService.getAllProperties().subscribe(
+      data => {
+         this.properties=data;
+          console.log("data", data);
+      }, error => {
+        console.log(error);
+      }
+     )
+     // data => {
+       // this.properties=data;
+          //console.log("data", data)
+       // }
+  //  )
+  /*   data => {
+      this.properties=data;
+        console.log("data", data)
+      }
+    )
+  }*/
+
   }
 
 }
