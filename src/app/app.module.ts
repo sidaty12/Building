@@ -9,13 +9,14 @@ import { PropertListComponent } from './property/propert-list/propert-list.compo
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingService } from './services/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
+import { PropertDetailComponent } from './property/property-detail/property-detail.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: PropertListComponent},
   {path: 'rent-property', component: PropertListComponent},
   {path: 'add-property', component: AddPropertyComponent},
-  //{path: 'property-detail/:id', component: PropertyDetailComponent, resolve: {prp: PropertyDetailResolverService}},
+  {path: 'propert-detail/:id', component: PropertDetailComponent},//, resolve: {prp: PropertyDetailResolverService}},
   ////{path: 'user/login', component: UserLoginComponent},
  // {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertListComponent}
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     PropertyCardComponent,
     PropertListComponent,
       NavBarComponent,
-      AddPropertyComponent
+      AddPropertyComponent,
+      PropertDetailComponent
    ],
   imports: [
     BrowserModule,
