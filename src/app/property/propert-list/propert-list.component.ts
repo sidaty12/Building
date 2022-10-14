@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HousingService } from 'src/app/services/housing.service';
 import { Observable } from "rxjs";
 import { Iproperty } from '../IProperty.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-propert-list',
@@ -10,17 +11,23 @@ import { Iproperty } from '../IProperty.interface';
 })
 export class PropertListComponent implements OnInit {
   // give a type array to properties because data a same type
- properties: Array<Iproperty>;
+ SellRent = 1;
+
+ properties: Iproperty[];
 
   //injectd variabel to get the list of building
-  constructor(private housingService: HousingService) { }
+  constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 
-  ngOnInit() : void{
-
-     this.housingService.getAllProperties().subscribe(
+  ngOnInit() : void {
+   if ( this.route.snapshot.url.toString()){
+       this.SellRent = 2; // Means we are on reng-property URL else we are on base url
+   }
+     this.housingService.getAllProperties(this.SellRent).subscribe(
       data => {
          this.properties=data;
           console.log("data", data);
+          console.log("SellRent", this.SellRent);
+
       }, error => {
         console.log(error);
       }

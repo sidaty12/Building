@@ -1,9 +1,9 @@
 [
   {
     "Id":1,
-    "SellRent":2,
+    "SellRent":1,
     "Name":"Birla House",
-    "PType":"House",
+    "Type":"House",
     "BHK":2,
     "FType":"Fully",
     "Price":12000,

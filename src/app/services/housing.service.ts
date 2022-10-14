@@ -13,19 +13,19 @@ export class HousingService {
 constructor(private http:HttpClient) { }
 // pipe and map are used to add un empty array which we
 // will able to push item
-public getAllProperties() : Observable<Iproperty[]> {
+getAllProperties(SellRent: number) : Observable<Iproperty[]> {
   return this.http.get('data/propreties.json').pipe(
     map(data => {
       const propertiesArray: Array<Iproperty> = [];
+
       for (const id in data) {
-        if(data.hasOwnProperty(id)) {
+        if(data.hasOwnProperty(id) && data[id].SellRent === SellRent ) {
           propertiesArray.push(data[id]);
         }
       }
       return propertiesArray;
-    }
-      )
-  )
+    } )
+  );
 }
 
 }
