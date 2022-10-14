@@ -1,5 +1,35 @@
-<p>
-  add-property works!
+<div class="card">
+  <div class="card-header">
+    Add New Property
+  </div>
+  <div class="card-body">
+    <!--form have been removed in source but here whene i do that i got error-->
+    <form (ngSubmit)='onSubmit(Form)' #Form="ngForm">
+      <div class="form-group col-12">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" required minlength="5">
+        <span *ngIf="!propName.valid && propName.touched" class="error-block">
+          <span *ngIf="propName.errors.required">  Please provide name</span>
+        <span *ngIf="propName.errors.minlength" > Name Must be atleast 5 char long </span>
+        </span>
+      </div>
 
-  <button (click)="onBack()" class="btn btn-primary">Back</button>
-</p>
+      <div class="form-group col-12">
+        <label for="name">Type</label>
+        <input type="text" class="form-control" ngModel name="Type">
+
+      </div>
+
+      <div class="form-group col-12">
+        <label for="name">Price</label>
+        <input type="text" class="form-control" ngModel name="Price">
+
+      </div>
+      <div class="form-group col-12">
+        <button type="submit" class="btn btn-primary mr-2">Save</button>
+        <button type="submit" class="btn btn-primary">Cancel</button>
+
+      </div>
+    </form>
+  </div>
+</div>
