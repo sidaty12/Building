@@ -14,6 +14,7 @@ import { PropertDetailComponent } from './property/property-detail/property-deta
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserServiceService } from './services/user-service.service';
+import { AlertifyService } from './services/alertify.service';
 
 
 const appRoutes: Routes = [
@@ -45,7 +46,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     HousingService,
-    UserServiceService
+    UserServiceService,
+    AlertifyService
+
   ],
   bootstrap: [AppComponent]
 })
