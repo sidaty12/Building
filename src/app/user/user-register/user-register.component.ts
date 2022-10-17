@@ -22,6 +22,7 @@ export class UserRegisterComponent implements OnInit {
        mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
       }, this.passwordMatchingValidatior);
 
+       this.registerationForm.controls['userName'].setValue('Default Value')
     }
 
 
