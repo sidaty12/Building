@@ -14,10 +14,10 @@ addUser(user: User) {
     users = JSON.parse(localStorage.getItem('Users'));
     users = [user, ...users];
   } else {
-    users =[user];
+    users = [user];
   }
 
- localStorage.setItem('Users', JSON.stringify(users));
+  localStorage.setItem('Users', JSON.stringify(users));
 
 }
 }

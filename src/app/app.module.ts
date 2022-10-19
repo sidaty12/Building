@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import{Routes, RouterModule} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -15,17 +15,19 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/auth.service';
 
 
 const appRoutes: Routes = [
   {path: '', component: PropertListComponent},
   {path: 'rent-property', component: PropertListComponent},
   {path: 'add-property', component: AddPropertyComponent},
-  {path: 'propert-detail/:id', component: PropertDetailComponent},//, resolve: {prp: PropertyDetailResolverService}},
+  {path: 'propert-detail/:id', component: PropertDetailComponent}, // , resolve: {prp: PropertyDetailResolverService}},
   {path: 'user/login', component: UserLoginComponent},
   {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertListComponent}
-];@NgModule({
+// tslint:disable-next-line: align
+]; @NgModule({
   declarations: [
     AppComponent,
     PropertyCardComponent,
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
   providers: [
     HousingService,
     UserServiceService,
-    AlertifyService
+    AlertifyService,
+    AuthService
 
   ],
   bootstrap: [AppComponent]
