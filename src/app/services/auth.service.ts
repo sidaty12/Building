@@ -11,7 +11,7 @@ export class AuthService {
     // baseUrl = environment.baseUrl;
     constructor() { }
 
-    authUser(user: User) {
+    authUser(user: User ) {
 
       let UserArray = [];
       if (localStorage.getItem('Users')) {

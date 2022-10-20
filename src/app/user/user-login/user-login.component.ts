@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-user-login',
@@ -9,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router ) { }
 
   ngOnInit() {
 
@@ -17,15 +21,21 @@ export class UserLoginComponent implements OnInit {
 
     onLogin(loginForm: NgForm){
     console.log('loginForm.value', loginForm.value);
+   // const.log(loginForm.value)
 
-    const user = this.authService.authUser(loginForm.value);
-    console.log(' user ', user);
+    const token = this.authService.authUser(loginForm.value);
+    console.log(' user ', token);
     // user indefined !!
-    if (user) {
+    if (token) {
+      localStorage.setItem('token', token.userName);
+      this.alertify.success('Login Successful');
       console.log('login Successuful');
+      this.router.navigate(['/']);
      }
       else {
        console.log('login not Successful');
+       this.alertify.error('User id or password is wrong');
+
       }
      }
     }
