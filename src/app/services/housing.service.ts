@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { PropertListComponent } from '../property/propert-list/propert-list.component';
 import { map } from 'rxjs/operators';
-import { Iproperty } from '../property/IProperty.interface';
+import { IpropertyBase } from '../model/ipropertybase';
+//import { Iproperty } from '../property/IProperty.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class HousingService {
 constructor(private http:HttpClient) { }
 // pipe and map are used to add un empty array which we
 // will able to push item
-getAllProperties(SellRent: number) : Observable<Iproperty[]> {
+getAllProperties(SellRent: number) : Observable<IpropertyBase[]> {
   return this.http.get('data/propreties.json').pipe(
     map(data => {
-      const propertiesArray: Array<Iproperty> = [];
+      const propertiesArray: Array<IpropertyBase> = [];
 
       for (const id in data) {
         if(data.hasOwnProperty(id) && data[id].SellRent === SellRent ) {
