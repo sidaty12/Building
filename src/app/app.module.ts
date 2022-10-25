@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {Routes, RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
+
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card/property-card.component';
@@ -29,7 +35,9 @@ const appRoutes: Routes = [
   {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertListComponent}
 // tslint:disable-next-line: align
-]; @NgModule({
+];
+
+@NgModule({
   declarations: [
     AppComponent,
     PropertyCardComponent,
@@ -47,7 +55,11 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot()
 
   ],
   providers: [
