@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HousingService } from 'src/app/services/housing.service';
 import { Observable } from "rxjs";
-import { Iproperty } from '../IProperty.interface';
 import { ActivatedRoute } from '@angular/router';
+import { IpropertyBase } from 'src/app/model/ipropertybase';
 
 @Component({
   selector: 'app-propert-list',
@@ -11,9 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PropertListComponent implements OnInit {
   // give a type array to properties because data a same type
- SellRent = 1;
+SellRent = 1;
+//properties: any;
 
- properties: Iproperty[];
+ properties: IpropertyBase[];
 
   //injectd variabel to get the list of building
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }

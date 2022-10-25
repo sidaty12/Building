@@ -3,7 +3,7 @@
     "Id":1,
     "SellRent":2,
     "Name":"Birla House",
-    "Type":"House",
+    "PType":"House",
     "BHK":2,
     "FType":"Fully",
     "Price":12000,
@@ -31,7 +31,7 @@
     "Id":2,
     "SellRent":2,
     "Name":"Erose Flat",
-    "PType":"Apartment",
+    "PType":"Aparment",
     "BHK":3,
     "FType":"Unfurnished",
     "Price":5000,
@@ -55,7 +55,7 @@
     "PostedOn":"01-Jan-2019"
   },
   {
-    "Id":3,
+    "Id":1,
     "SellRent":1,
     "Name":"Gun Hill",
     "PType":"House",
