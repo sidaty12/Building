@@ -8,18 +8,18 @@ import { AlertifyService } from '../services/alertify.service';
 })
 export class NavBarComponent implements OnInit {
 
-  loggedinUser : string;
+  loggedinUser: string;
   constructor(private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
-// once this metod is called show user name side of welcome
-  loggedin(){
-    this.loggedinUser = localStorage.getItem('token')
+
+  loggedin() {
+    this.loggedinUser = localStorage.getItem('token');
     return this.loggedinUser;
   }
 
-  onLogout(){
+  onLogout() {
     localStorage.removeItem('token');
     this.alertify.success("You are logged out !");
   }
