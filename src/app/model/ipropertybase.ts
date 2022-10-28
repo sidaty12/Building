@@ -1,4 +1,4 @@
-export interface  IpropertyBase {
+export interface  IPropertyBase {
 
   Id: number;
   SellRent: number;
