@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NBvvheJF/EljW+2gGJooFYkQZsaq0KRbx6aq1A9T3OpYa22gio0PNY8US7GptRXZFPl45WVkQxyTRTlUQf+uzw==",
+  "success": true,
+  "projectFilePath": "C:\\DevSid\\Projet\\App-Angular\\my-first-app\\ApiWeb\\ApiWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sidat\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.29\\microsoft.netcore.app.host.win-x64.3.1.29.nupkg.sha512"
+  ],
+  "logs": []
+}
