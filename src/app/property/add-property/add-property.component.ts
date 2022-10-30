@@ -6,6 +6,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -82,6 +83,14 @@ export class AddPropertyComponent implements OnInit {
         Description: [null]
       })
       });
+      this.addPropertyForm.get('BasicInfo').get('PType').valueChanges.subscribe(
+        {
+          next: (data) =>  {
+            this.propertyView.PType = data;
+            console.log('new data -> ' + data + ' propertyViewPtype -> ' + this.propertyView.PType);
+          }
+        }
+      );
   }
 
 //#region <Getter Methods>
@@ -113,7 +122,7 @@ export class AddPropertyComponent implements OnInit {
       }
 
       get PType() {
-        return this.BasicInfo.controls.PType as FormControl;
+        return this.BasicInfo.controls.PType    as FormControl;
       }
 
       get FType() {
