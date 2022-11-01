@@ -27,6 +27,7 @@
     "ngx-bootstrap": "^9.0.0",
     "ngx-toastr": "^12.1.0",
     "rxjs": "~6.5.4",
+    "source-map-explorer": "^2.5.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.8"
   },

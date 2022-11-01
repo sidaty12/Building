@@ -13,15 +13,17 @@ namespace ApiWeb.Controllers
     [HttpGet]
     public IEnumerable<string> Get()
     {
-      return new string[] { "Atzlanta", "New York;  " +
-        "" };
+      return new string[] { "Atzlanta", "New York"
+       };
     }
+
+   
 
     // GET api/<CityController>/5
     [HttpGet("{id}")]
     public string Get(int id)
     {
-      return "value";
+      return "Atalanta";
     }
 
     // POST api/<CityController>
