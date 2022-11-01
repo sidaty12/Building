@@ -40,12 +40,10 @@
               ],
               "optimization": false,
               "outputHashing": "all",
-              "sourceMap": {
-                "scripts": true,
-                "styles": false,
-                "vendor": true
-              },
-              "namedChunks": false,
+
+              "sourceMap": true,
+
+              "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

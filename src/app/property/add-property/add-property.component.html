@@ -45,7 +45,8 @@
                 <div class="form-group col-12">
                   <p>Property Type</p>
                   <div class="btn-group" btnRadioGroup
-                  formControlName='PType'>
+                  formControlName='PType'
+                  [(ngModel)]="propertyView.PType">
                     <label
                     *ngFor="let ptype of propertyTypes"
                     class="btn btn-outline-primary mr-2"

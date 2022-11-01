@@ -46,6 +46,9 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.CreateAddPropertyForm();
+   // this.housingService.getAllCities().subscribe(data => {
+    //  console.log(data);
+    //})
   }
 
   CreateAddPropertyForm() {
@@ -83,14 +86,14 @@ export class AddPropertyComponent implements OnInit {
         Description: [null]
       })
       });
-      this.addPropertyForm.get('BasicInfo').get('PType').valueChanges.subscribe(
+      /*this.addPropertyForm.get('BasicInfo').get('PType').valueChanges.subscribe(
         {
           next: (data) =>  {
             this.propertyView.PType = data;
             console.log('new data -> ' + data + ' propertyViewPtype -> ' + this.propertyView.PType);
           }
         }
-      );
+      );*/
   }
 
 //#region <Getter Methods>
@@ -223,8 +226,9 @@ export class AddPropertyComponent implements OnInit {
       this.alertify.error('Please review the form and provide all valid entries');
     }
   }
-
+// sent to value of different property to local storage
   mapProperty(): void {
+    this.property.Id = this.housingService.newPropID();
     this.property.SellRent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.PType = this.PType.value;
