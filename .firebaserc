@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-building"
+  },
+  "targets": {
+    "angular-building": {
+      "hosting": {
+        "my-first-app": [
+          "angular-building"
+        ]
+      }
+    }
+  }
+}

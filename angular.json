@@ -40,9 +40,7 @@
               ],
               "optimization": false,
               "outputHashing": "all",
-
               "sourceMap": true,
-
               "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -92,7 +90,6 @@
             ],
             "styles": [
               "src/styles.css"
-
             ],
             "scripts": []
           }
@@ -120,6 +117,16 @@
             "production": {
               "devServerTarget": "my-first-app:serve:production"
             }
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "my-first-app:build:production",
+            "firebaseProject": "angular-building",
+            "firebaseHostingSite": "angular-building"
           }
         }
       }
