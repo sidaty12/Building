@@ -26,6 +26,7 @@ namespace ApiWeb
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
+      services.AddCors();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,11 @@ namespace ApiWeb
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
+      app.UseHttpsRedirection();
+
 
       app.UseAuthorization();
 
