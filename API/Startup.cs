@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
+using API.Data.Repo;
 
 namespace API
 {
@@ -32,6 +33,7 @@ namespace API
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors(); //This needs to let it default
+            services.AddScoped<ICityRepository, CityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
