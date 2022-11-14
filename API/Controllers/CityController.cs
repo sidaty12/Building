@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using API.Data;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,39 +11,21 @@ namespace ApiWeb.Controllers
   [ApiController]
   public class CityController : ControllerBase
   {
+
+    private readonly DataContext dc;
+    public CityController(DataContext dc){
+
+       this.dc = dc;
+    }
     // GET: api/<CityController>
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult GetCities()
     {
-      return new string[] { "Atzlanta", "New York"
-       };
+      var cities = dc.cities.ToList();
+      return Ok(cities);
+       }
     }
 
 
-
-    // GET api/<CityController>/5
-    [HttpGet("{id}")]
-    public string Get(int id)
-    {
-      return "Atalanta";
-    }
-
-    // POST api/<CityController>
-    [HttpPost]
-    public void Post([FromBody] string value)
-    {
-    }
-
-    // PUT api/<CityController>/5
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
-    }
-
-    // DELETE api/<CityController>/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
-    {
-    }
   }
-}
+
