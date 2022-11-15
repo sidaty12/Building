@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using API.Interfaces;
 
 namespace API.Data.Repo
 {
@@ -32,13 +32,6 @@ namespace API.Data.Repo
          dc.cities.Remove(city);
      }
 
-   
 
-     public async Task<bool> SaveAsync()
-     {
-          return await dc.SaveChangesAsync() > 0;
-     }
-
-   
   }
 }

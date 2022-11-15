@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
 using API.Data.Repo;
+using API.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,17 +16,16 @@ namespace ApiWeb.Controllers
   [ApiController]
   public class CityController : ControllerBase
   {
-    private readonly ICityRepository repo;
-    public CityController(ICityRepository repo){
+    private readonly IUnitOfWork uow;
+    public CityController(IUnitOfWork uow){
 
-
-      this.repo = repo;
+      this.uow = uow;
     }
     // GET: api/<CityController>
     [HttpGet]
     public async Task<IActionResult> GetCities()
     {
-      var cities = await repo.GetCitiesAsync();
+      var cities = await uow.CityRepository.GetCitiesAsync();
       return Ok(cities);
     }
 
@@ -34,8 +34,8 @@ namespace ApiWeb.Controllers
     {
       //City city = new City();
       //city.Name = cityName;
-      repo.AddCity(city);
-      await repo.SaveAsync();
+      uow.CityRepository.AddCity(city);
+      await uow.SaveAsync();
       return StatusCode(201);
        }
 
@@ -43,8 +43,8 @@ namespace ApiWeb.Controllers
     public async Task<IActionResult> DeleteCity(int id)
     {
 
-      repo.DeleteCity(id);
-      await repo.SaveChangesAsync();
+      uow.CityRepository.DeleteCity(id);
+      await uow.SaveAsync();
       return Ok(id);
        }
 

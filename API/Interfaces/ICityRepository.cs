@@ -3,7 +3,7 @@ using API.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace API.Data.Repo
+namespace API.Interfaces
 
 {
     public interface ICityRepository
@@ -14,6 +14,5 @@ namespace API.Data.Repo
 
           void DeleteCity(int CityId);
 
-          Task<bool> SaveAsync();
     }
 }
