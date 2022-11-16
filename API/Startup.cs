@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using API.Interfaces;
+using AutoMapper;
+using API.Helpers;
 
 namespace API
 {
@@ -25,6 +27,7 @@ namespace API
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors(); //This needs to let it default
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
