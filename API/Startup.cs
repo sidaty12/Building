@@ -25,7 +25,7 @@ namespace API
         {
             services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddControllers();
+      services.AddControllers().AddNewtonsoftJson();
             services.AddCors(); //This needs to let it default
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
