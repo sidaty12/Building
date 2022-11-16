@@ -9,6 +9,7 @@ using API.Data.Repo;
 using API.Interfaces;
 using API.Dtos;
 using System;
+using AutoMapper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,9 +20,14 @@ namespace ApiWeb.Controllers
   public class CityController : ControllerBase
   {
     private readonly IUnitOfWork uow;
-    public CityController(IUnitOfWork uow){
+
+    private readonly IMapper mapper;
+
+    public CityController(IUnitOfWork uow, IMapper mapper){
 
       this.uow = uow;
+
+      this.mapper = mapper;
     }
     // GET: api/<CityController>
     [HttpGet]
@@ -29,28 +35,18 @@ namespace ApiWeb.Controllers
     {
       var cities = await uow.CityRepository.GetCitiesAsync();
 
-      var citiesDto = from c in cities
-                      select new CityDto()
-                      {
-                        Id = c.Id,
-                        Name = c.Name,
-                      };
-
+      var citiesDto = mapper.Map<IEnumerable<CityDto>>(cities);
+    
       return Ok(citiesDto);
     }
 
     [HttpPost("post")]
     public async Task<IActionResult> AddCity(CityDto cityDto)
     {
-      //City city = new City();
-      //city.Name = cityName;
-      var city = new City
-      {
-        Name = cityDto.Name,
-        LastUpdatedBy = 1,
-        LastUpdatedOn = DateTime.Now
-      };
 
+      var city = mapper.Map<City>(cityDto);
+      city.LastUpdatedBy = 1;
+   
       uow.CityRepository.AddCity(city);
       await uow.SaveAsync();
       return StatusCode(201);
