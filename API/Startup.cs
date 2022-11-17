@@ -8,6 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using API.Interfaces;
 using AutoMapper;
 using API.Helpers;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics;
+using API.Extentions;
+using API.Middlewares;
 
 namespace API
 {
@@ -34,10 +39,10 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+      // app.ConfigureExeptionHandeler(env);
+
+           app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
