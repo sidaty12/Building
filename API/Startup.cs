@@ -42,8 +42,8 @@ namespace API
 
       // app.ConfigureExeptionHandeler(env);
 
-           app.UseMiddleware<ExceptionMiddleware>();
-
+            app.ConfigureBuiltinExeptionHandeler(env);
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
