@@ -11,14 +11,16 @@ using API.Dtos;
 using System;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
+using API.Controllers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ApiWeb.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-  public class CityController : ControllerBase
+  [Authorize]
+
+  public class CityController : BaseController
   {
     private readonly IUnitOfWork uow;
 
@@ -32,9 +34,11 @@ namespace ApiWeb.Controllers
     }
     // GET: api/<CityController>
     [HttpGet]
+
+    [AllowAnonymous]
     public async Task<IActionResult> GetCities()
     {
-      throw new UnauthorizedAccessException();
+    //  throw new UnauthorizedAccessException();
       var cities = await uow.CityRepository.GetCitiesAsync();
 
       var citiesDto = mapper.Map<IEnumerable<CityDto>>(cities);
