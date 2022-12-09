@@ -1,3 +1,4 @@
+using API.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -9,8 +10,12 @@ namespace API.Extentions
 {
   public static class ExceptionMiddlewareExtensions
   {
-    
     public static void ConfigureExeptionHandeler(this IApplicationBuilder app, IWebHostEnvironment env)
+    {
+      app.UseMiddleware<ExceptionMiddleware>();
+
+    }
+    public static void ConfigureBuiltinExeptionHandeler(this IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {

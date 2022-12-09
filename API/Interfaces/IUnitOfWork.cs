@@ -6,6 +6,9 @@ namespace API.Interfaces
     {
 
          ICityRepository CityRepository {get;}
-         Task<bool> SaveAsync();
+
+           IUserRepository UserRepository { get;}
+
+           Task<bool> SaveAsync();
     }
 }
