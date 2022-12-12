@@ -16,6 +16,7 @@ using API.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Data.SqlClient;
 
 namespace API
 {
@@ -31,8 +32,16 @@ namespace API
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+
+      var builder = new SqlConnectionStringBuilder(
+        Configuration.GetConnectionString("Default"));
+
+      builder.Password = Configuration.GetSection("DBPassword").Value;
+
+      var connectionString = builder.ConnectionString;
+
       services.AddDbContext<DataContext>(options =>
-      options.UseSqlServer(Configuration.GetConnectionString("Default")));
+      options.UseSqlServer(connectionString));
       services.AddControllers().AddNewtonsoftJson();
       services.AddCors(); //This needs to let it default
       services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
