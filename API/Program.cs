@@ -17,7 +17,13 @@ namespace API
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
+        Host.CreateDefaultBuilder(args).
+             ConfigureHostConfiguration(configHost =>
+
+             {
+               configHost.AddEnvironmentVariables(prefix: "Build_");
+             }
+             )
             .ConfigureWebHostDefaults(webBuilder =>
             {
               webBuilder.UseStartup<Startup>();

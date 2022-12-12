@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221208113420_addUser")]
-    partial class addUser
+    [Migration("20221210120910_UpdateUserForPasword")]
+    partial class UpdateUserForPasword
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

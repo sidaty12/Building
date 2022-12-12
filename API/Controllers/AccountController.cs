@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Errors;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace API.Controllers
@@ -49,7 +50,23 @@ namespace API.Controllers
       return Ok(loginRes);
     }
 
-    private string CreateJWT(User user)
+    [HttpPost("register")]
+
+    public async Task<IActionResult> Register(LoginReqDto loginReq)
+    {
+      if (await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
+      
+       // apiError.ErrorCode = BadRequest().StatusCode;
+       // apiError.ErrorMessage = "User already exists, please try different user name";
+        return BadRequest("User alerdy exists, please try something else");
+      
+
+      uow.UserRepository.Register(loginReq.UserName, loginReq.Password);
+      await uow.SaveAsync();
+      return StatusCode(201);
+
+    }
+      private string CreateJWT(User user)
     {
 
       //   var secretKey = configuration.GetSection("AppSettings:key").Value;
