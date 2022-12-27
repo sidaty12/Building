@@ -1,10 +1,7 @@
 using API.Dtos;
 using API.Interfaces;
 using API.Models;
-using AutoMapper.Configuration;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -38,9 +35,15 @@ namespace API.Controllers
 
       var user = await uow.UserRepository.Authenticate(loginReq.UserName, loginReq.Password);
 
+      ApiError apiError = new ApiError();
+
       if (user == null)
       {
-        return Unauthorized();
+        //  return Unauthorized();
+     //   apiError.ErrorCode = Unauthorized().StatusCode;
+     //   apiError.ErrorMessage = "Invalid user name or password";
+     //   apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
+        return Unauthorized("INVALID USER OR PASSWORD");
       }
 
       var loginRes = new LoginResDto();

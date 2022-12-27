@@ -34,14 +34,15 @@ namespace ApiWeb.Controllers
     }
     // GET: api/<CityController>
 
+    [HttpGet ("cities")]
     [AllowAnonymous]
-    [HttpGet]
+
     public async Task<IActionResult> GetCities()
     {
          var cities = await uow.CityRepository.GetCitiesAsync();
 
       var citiesDto = mapper.Map<IEnumerable<CityDto>>(cities);
-    
+
       return Ok(citiesDto);
     }
 
@@ -71,7 +72,7 @@ namespace ApiWeb.Controllers
       cityFromDb.LastUpdatedOn = DateTime.Now;
       mapper.Map(cityDto, cityFromDb);
 
-      throw new Exception("some unknown error occured");
+      //throw new Exception("some unknown error occured");
       await uow.SaveAsync();
       return StatusCode(200);
     }

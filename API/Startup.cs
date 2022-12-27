@@ -76,6 +76,9 @@ namespace API
 
         app.UseRouting();
 
+        app.UseHsts();
+        app.UseHttpsRedirection();
+
         app.UseCors(
         options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()); //This needs to set everything allowed
 
