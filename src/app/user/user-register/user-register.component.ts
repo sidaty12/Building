@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/model/user';
-import { UserServiceService } from 'src/app/services/user-service.service';
-import * as alertyfy from 'alertifyjs';
+import { UserForRegister } from 'src/app/model/user';
+//import * as alertyfy from 'alertifyjs';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -14,10 +14,11 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 export class UserRegisterComponent implements OnInit {
 
   registerationForm: FormGroup;
-  user : User;
+  user : UserForRegister;
   userSubmitted: boolean;
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService,
+  constructor(private fb: FormBuilder,
+     private authService: AuthService,
               private alertify: AlertifyService) { }
 
   ngOnInit() {
@@ -81,21 +82,27 @@ export class UserRegisterComponent implements OnInit {
 if (this.registerationForm.valid){
 
   //this.user = Object.assign(this.user, this.registerationForm.value);
-  this.userService.addUser(this.userData());
-    // remove value putting in forms after submit it
-  this.registerationForm.reset();
-  this.userSubmitted = false;
-  this.alertify.success('Congrats, you are successfully registered');
+  this.authService.registerUser(this.userData()).subscribe(() => {
 
-} else {
-  this.alertify.error('Kindly provide the required fields');
+    this.onReset();
+    this.alertify.success('Congrats, you are successfully registered');
+
+  }, error => {
+   console.log(error);
+   this.alertify.error(error.error);
+  });
+
+
 }
 
 
   }
 
-
-  userData(): User {
+  onReset() {
+    this.userSubmitted = false;
+    this.registerationForm.reset();
+}
+  userData(): UserForRegister {
     return this.user = {
         userName: this.userName.value,
         email: this.email.value,
