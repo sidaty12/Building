@@ -40,10 +40,10 @@ namespace API.Controllers
       if (user == null)
       {
         //  return Unauthorized();
-     //   apiError.ErrorCode = Unauthorized().StatusCode;
-     //   apiError.ErrorMessage = "Invalid user name or password";
-     //   apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
-        return Unauthorized("INVALID USER OR PASSWORD");
+       apiError.ErrorCode = Unauthorized().StatusCode;
+       apiError.ErrorMessage = "Invalid user name or password";
+       apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
+        return Unauthorized(apiError);
       }
 
       var loginRes = new LoginResDto();
