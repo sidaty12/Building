@@ -34,9 +34,6 @@ export class UserLoginComponent implements OnInit {
         this.alertify.success('Login Successful');
         this.router.navigate(['/']);
 
-      }, error => {
-        console.log(error);
-        this.alertify.error(error.error);
       }
     )
    // console.log(' user ', token);
