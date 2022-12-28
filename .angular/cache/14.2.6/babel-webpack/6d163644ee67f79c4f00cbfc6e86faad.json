@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class HttpErrorInterceptorService {\n  intercept(request, next) {\n    console.log('HTTP Request started');\n    return next.handle(request);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

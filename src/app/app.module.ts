@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Routes, RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -27,6 +27,7 @@ import { AuthService } from './services/auth.service';
 import { PropertyDetailResolverService } from './property/property-detail/Property-detail-resolver.service';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
+import { HttpErrorInterceptorService } from './services/httperor-interceptor.service';
 
 
 const appRoutes: Routes = [
@@ -76,8 +77,14 @@ const appRoutes: Routes = [
 
   ],
   providers: [
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi: true
+    },
     HousingService,
-   // UserServiceService,
+
     AlertifyService,
     AuthService,
     PropertyDetailResolverService
