@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpErrorInterceptorService } from './services/httperor-interceptor.service';
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +28,6 @@ import { AuthService } from './services/auth.service';
 import { PropertyDetailResolverService } from './property/property-detail/Property-detail-resolver.service';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
-import { HttpErrorInterceptorService } from './services/httperor-interceptor.service';
 
 
 const appRoutes: Routes = [
