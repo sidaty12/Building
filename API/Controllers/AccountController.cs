@@ -39,10 +39,9 @@ namespace API.Controllers
 
       if (user == null)
       {
-        //  return Unauthorized();
-       apiError.ErrorCode = Unauthorized().StatusCode;
-       apiError.ErrorMessage = "Invalid user name or password";
-       apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
+        apiError.ErrorCode = Unauthorized().StatusCode;
+        apiError.ErrorMessage = "Invalid user name or password";
+        apiError.ErrorDetails = "This error appear when provided user id or password does not exists";
         return Unauthorized(apiError);
       }
 
@@ -57,19 +56,21 @@ namespace API.Controllers
 
     public async Task<IActionResult> Register(LoginReqDto loginReq)
     {
-      if (await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
-      
-       // apiError.ErrorCode = BadRequest().StatusCode;
-       // apiError.ErrorMessage = "User already exists, please try different user name";
-        return BadRequest("User alerdy exists, please try something else");
-      
+      ApiError apiError = new ApiError();
 
-      uow.UserRepository.Register(loginReq.UserName, loginReq.Password);
+      if (await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
+      { 
+        apiError.ErrorCode = BadRequest().StatusCode;
+      apiError.ErrorMessage = "User already exists, please try different user name";
+      return BadRequest(apiError);
+
+    }
+    uow.UserRepository.Register(loginReq.UserName, loginReq.Password);
       await uow.SaveAsync();
       return StatusCode(201);
 
-    }
-      private string CreateJWT(User user)
+  }
+    private string CreateJWT(User user)
     {
 
       //   var secretKey = configuration.GetSection("AppSettings:key").Value;
