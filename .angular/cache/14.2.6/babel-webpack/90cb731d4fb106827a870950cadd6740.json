@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var ErroCode = /*#__PURE__*/(() => {\n  (function (ErroCode) {\n    ErroCode[ErroCode[\"serverDown\"] = 0] = \"serverDown\";\n    ErroCode[ErroCode[\"unauthorized\"] = 401] = \"unauthorized\";\n  })(ErroCode || (ErroCode = {}));\n\n  return ErroCode;\n})();","map":null,"metadata":{},"sourceType":"module"}

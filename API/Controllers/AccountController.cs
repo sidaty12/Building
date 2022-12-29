@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Errors;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+using API.Extentions;
+
 
 namespace API.Controllers
 {
@@ -56,10 +58,18 @@ namespace API.Controllers
 
     public async Task<IActionResult> Register(LoginReqDto loginReq)
     {
-      ApiError apiError = new ApiError();
+       ApiError apiError = new ApiError();
+
+      if(loginReq.UserName.IsEmpty() || loginReq.Password.IsEmpty())
+       {
+         apiError.ErrorCode = BadRequest().StatusCode;
+      apiError.ErrorMessage = "User name or password can not be blank";
+             return BadRequest(apiError);
+
+       }
 
       if (await uow.UserRepository.UserAlreadyExists(loginReq.UserName))
-      { 
+      {
         apiError.ErrorCode = BadRequest().StatusCode;
       apiError.ErrorMessage = "User already exists, please try different user name";
       return BadRequest(apiError);
@@ -80,7 +90,7 @@ namespace API.Controllers
       var key = new SymmetricSecurityKey(Encoding.UTF8
       .GetBytes(secretKey));
 
-      
+
 
       var claims = new Claim[] {
         new Claim(ClaimTypes.Name, user.Username),
