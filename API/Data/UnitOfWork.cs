@@ -20,6 +20,13 @@ namespace API.Data
     public IUserRepository UserRepository =>
       new UserRepository(dc);
 
+
+
+    public IPropertyRepository PropertyRepository =>
+        new PropertyRepository(dc);
+
+    public IPropertyRepository PropertyReopsitory => throw new System.NotImplementedException();
+
     public async Task<bool> SaveAsync()
     {
       return await dc.SaveChangesAsync() > 0;
