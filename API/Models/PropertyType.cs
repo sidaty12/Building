@@ -2,14 +2,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Models
 {
-  public class PropertyType
+  public class PropertyType : BaseEntity
   {
 
-    public int Id { get; set; }
     [Required]
     public string Name { get; set; }
 
   }
 }
-  
+
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221230112048_addingPropertyRelatedEntities")]
-    partial class addingPropertyRelatedEntities
+    [Migration("20230119112810_FurnishingTypes")]
+    partial class FurnishingTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("cities");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("API.Models.FurnishingType", b =>
@@ -65,7 +65,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FurnishingType");
+                    b.ToTable("FurnishingTypes");
                 });
 
             modelBuilder.Entity("API.Models.Photo", b =>
@@ -141,6 +141,12 @@ namespace API.Migrations
                     b.Property<bool>("Gated")
                         .HasColumnType("bit");
 
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MainEntrance")
                         .HasColumnType("nvarchar(max)");
 
@@ -194,6 +200,12 @@ namespace API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -209,6 +221,12 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LastUpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<byte[]>("Password")
                         .IsRequired()
