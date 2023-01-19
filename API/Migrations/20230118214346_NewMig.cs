@@ -3,19 +3,35 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class addingPropertyRelatedEntities : Migration
+    public partial class NewMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "FurnishingType",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                         Name = table.Column<string>(nullable: false),
-                         LastUpdatedOn = table.Column<DateTime>(nullable: false),
-                         LastUpdatedBy = table.Column<int>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,6 +49,21 @@ namespace API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PropertyTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: false),
+                    Password = table.Column<byte[]>(nullable: false),
+                    PasswordKey = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,17 +94,15 @@ namespace API.Migrations
                     Age = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     PostedOn = table.Column<DateTime>(nullable: false),
-                    PostedBy = table.Column<int>(nullable: false),
-                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
-                    LastUpdatedBy = table.Column<int>(nullable: false),
+                    PostedBy = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Properties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Properties_cities_CityId",
+                        name: "FK_Properties_Cities_CityId",
                         column: x => x.CityId,
-                        principalTable: "cities",
+                        principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -102,11 +131,11 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                   ImageUrl = table.Column<string>(nullable: false),
-                    IsPrimary = table.Column<bool>(nullable: false),
-                    PropertyId = table.Column<int>(nullable: false),
                     LastUpdatedOn = table.Column<DateTime>(nullable: false),
                     LastUpdatedBy = table.Column<int>(nullable: false),
+                    ImageUrl = table.Column<string>(nullable: false),
+                    IsPrimary = table.Column<bool>(nullable: false),
+                    PropertyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,7 +183,13 @@ namespace API.Migrations
                 name: "Properties");
 
             migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
                 name: "FurnishingType");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "PropertyTypes");

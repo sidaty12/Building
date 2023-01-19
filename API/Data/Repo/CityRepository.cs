@@ -19,22 +19,22 @@ namespace API.Data.Repo
 
    public async Task<IEnumerable<City>> GetCitiesAsync()
     {
-      return await dc.cities.ToListAsync();
+      return await dc.Cities.ToListAsync();
     }
     public void AddCity(City city)
      {
-         dc.cities.AddAsync(city);
+         dc.Cities.AddAsync(city);
      }
 
      public void DeleteCity(int CityId)
      {
-         var city = dc.cities.Find(CityId);
-         dc.cities.Remove(city);
+         var city = dc.Cities.Find(CityId);
+         dc.Cities.Remove(city);
      }
 
     public async Task<City> FindCity(int id)
     {
-      return await dc.cities.FindAsync(id);
+      return await dc.Cities.FindAsync(id);
     }
   }
 }

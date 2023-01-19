@@ -2,6 +2,6 @@
 
 select * from Users
 select * from PropertyTypes
-select * from FurnishingTypes
+select * from FurnishingType
 select * from Cities
 select * from Properties

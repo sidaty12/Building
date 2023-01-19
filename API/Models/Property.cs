@@ -6,9 +6,8 @@ using API.Models;
 namespace API.Models
 
 {
-  public class Property
+  public class Property : BaseEntity
     {
-        public int Id {get; set;}
         public int SellRent { get; set; }
         public string Name { get; set; }
         public int PropertyTypeId { get; set; }
