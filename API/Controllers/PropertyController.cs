@@ -14,16 +14,15 @@ namespace API.Controllers
     public class PropertyController : BaseController
     {
         private readonly IUnitOfWork uow;
-       // private readonly IMapper mapper;
+        private readonly IMapper mapper;
        // private readonly IPhotoService photoService;
 
-        public PropertyController(IUnitOfWork uow
-        //IMapper mapper
-        )
+        public PropertyController(IUnitOfWork uow,
+        IMapper mapper)
         {
           //  this.photoService = photoService;
             this.uow = uow;
-            //this.mapper = mapper;
+            this.mapper = mapper;
         }
 
           //property/list/1
@@ -32,8 +31,8 @@ namespace API.Controllers
         public async Task<IActionResult> GetPropertyList(int sellRent)
         {
             var properties = await uow.PropertyRepository.GetPropertiesAsync(sellRent);
-            //var propertyListDTO = mapper.Map<IEnumerable<PropertyListDto>>(properties);
-            return Ok(properties);
+            var propertyListDTO = mapper.Map<IEnumerable<PropertyListDto>>(properties);
+            return Ok(propertyListDTO);
         }
     }
 }
