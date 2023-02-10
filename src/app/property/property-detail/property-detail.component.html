@@ -26,6 +26,14 @@
             <strong>Furnishing Type: </strong>
             {{property.furnishingType}}
         </div>
+
+        <div>
+          <strong>Available for: </strong>
+          <span *ngIf="property.sellRent == 1">Purchase</span>
+          <span *ngIf="property.sellRent == 2">Rent</span>
+
+      </div>
+
       </div>
       <div class="card-footer">
         <div class="btn-group d-flex">
@@ -71,7 +79,9 @@
 
                   <div class="heading">
                       <strong>Gated Community</strong>
-                      <p>{{property.gated}}</p>
+                      <p *ngIf= "property.gated"> Yes</p>
+                      <p *ngIf= "!property.gated"> No</p>
+
                   </div>
 
                   <div class="heading">

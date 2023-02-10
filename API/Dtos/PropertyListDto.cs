@@ -6,6 +6,8 @@ namespace API.Dtos
     {
         public int Id { get; set; }
        // public int sellRent {get; set;}
+
+        public int sellRent {get; set;}
         public string Name { get; set; }
         public string PropertyType { get; set; }
         public string FurnishingType { get; set; }
