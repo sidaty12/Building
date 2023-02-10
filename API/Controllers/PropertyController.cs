@@ -11,7 +11,7 @@ using API.Models;
 
 namespace API.Controllers
 {
-    public class PropertyController : BaseController
+  public class PropertyController : BaseController
     {
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
