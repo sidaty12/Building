@@ -1,7 +1,6 @@
-using API.Dtos;
 using System;
 
-namespace API.Controllers
+namespace API.Dtos
 {
   public class PropertyDetailDto : PropertyListDto
   {
