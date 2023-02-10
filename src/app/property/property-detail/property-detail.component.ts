@@ -31,6 +31,8 @@ export class PropertDetailComponent implements OnInit {
       }
     );
 
+    this.property.age = this.housingService.getPropertyAge(this.property.estPossessionOn);
+
    /* this.route.params.subscribe(
       (params) => {
         this.propertyId = +params['id'];
