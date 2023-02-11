@@ -50,8 +50,8 @@
                     <label
                     *ngFor="let ptype of propertyTypes"
                     class="btn btn-outline-primary mr-2"
-                    [btnRadio]="ptype" tabindex="0" role="button"
-                    name="PropType">{{ptype}}
+                    [btnRadio]="ptype.id" tabindex="0" role="button"
+                    name="PropType">{{ptype.name}}
                   </label>
                   </div>
                   <div class="error-block" *ngIf="PType.invalid && nextClicked">
@@ -67,9 +67,9 @@
                   <label
                     *ngFor="let ftype of furnishTypes"
                     class="btn btn-outline-primary mr-2"
-                    [btnRadio]="ftype" tabindex="0" role="button"
+                    [btnRadio]="ftype.id" tabindex="0" role="button"
                     name="FurnishType">
-                    {{ftype}}
+                    {{ftype.name}}
                   </label>
                   </div>
                   <div class="error-block" *ngIf="FType.invalid && nextClicked">
