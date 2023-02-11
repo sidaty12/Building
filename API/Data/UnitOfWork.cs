@@ -25,7 +25,14 @@ namespace API.Data
     public IPropertyRepository PropertyRepository =>
         new PropertyRepository(dc);
 
-    public IPropertyRepository PropertyReopsitory => throw new System.NotImplementedException();
+   
+
+    public IPropertyTypeRepository PropertyTypeRepository =>
+       new PropertyTypeRepository(dc);
+
+    public IFurnishingTypeRepository FurnishingTypeRepository =>
+
+      new FurnishingTypeRepository(dc);
 
     public async Task<bool> SaveAsync()
     {

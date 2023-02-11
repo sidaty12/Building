@@ -11,6 +11,9 @@ namespace API.Interfaces
 
            IPropertyRepository PropertyRepository {get;}
 
-           Task<bool> SaveAsync();
+           IPropertyTypeRepository PropertyTypeRepository { get; }
+
+           IFurnishingTypeRepository FurnishingTypeRepository { get; }
+    Task<bool> SaveAsync();
     }
 }
