@@ -91,10 +91,10 @@
 
                 <div class="form-group col-12">
                   <label>City</label>
-                  <select
+                  <select #City
+                  (change)= "propertyView.city = City.options[City.options.selectedIndex].text"
                   class="form-contrtol"
-                  formArrayName="City"
-                  [(ngModel)]="propertyView.city">
+                  formControlName="City">
                   <option value="">--Select City--</option>
                   <option *ngFor="let city of CityList"
                   value={{city.id}}>
