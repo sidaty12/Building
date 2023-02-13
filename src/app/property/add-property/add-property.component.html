@@ -45,12 +45,11 @@
                 <div class="form-group col-12">
                   <p>Property Type</p>
                   <div class="btn-group" btnRadioGroup
-                  formControlName='PType'
-                  [(ngModel)]="propertyView.propertyType">
-                    <label
+                  formControlName='PType'>                   <label
                     *ngFor="let ptype of propertyTypes"
                     class="btn btn-outline-primary mr-2"
                     [btnRadio]="ptype.id" tabindex="0" role="button"
+                    (click)="propertyView.propertyType=ptype.name"
                     name="PropType">{{ptype.name}}
                   </label>
                   </div>
@@ -60,16 +59,17 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <p>Furnishing Type</p>
+                  <p>Furnishing Type (changed)</p>
                   <div class="btn-group" btnRadioGroup
-                  formControlName="FType"
-                  [(ngModel)]="propertyView.furnishingType">
-                  <label
+                  formControlName="FType">
+                    <label
                     *ngFor="let ftype of furnishTypes"
                     class="btn btn-outline-primary mr-2"
+                    (click) = "propertyView.furnishingType =ftype.name"
+
+
                     [btnRadio]="ftype.id" tabindex="0" role="button"
-                    name="FurnishType">
-                    {{ftype.name}}
+                    name="FurnishType">{{ftype.name}}
                   </label>
                   </div>
                   <div class="error-block" *ngIf="FType.invalid && nextClicked">
