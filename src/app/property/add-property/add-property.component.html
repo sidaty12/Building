@@ -28,11 +28,12 @@
                   <p>BHK</p>
                   <div class="btn-group" btnRadioGroup
                   formControlName="BHK"
-                  [(ngModel)]="propertyView.bhk" name="BHK">
+                  name="BHK">
                     <label
                       *ngFor="let bhk of [1,2,3,4]"
                       class="btn btn-outline-primary mr-2"
                       [btnRadio]="bhk" tabindex="0" role="button"
+                      (click) = "propertyView.bhk= bhk"
                       name="BHK">
                       {{bhk}}
                     </label>
@@ -79,10 +80,9 @@
 
                 <div class="form-group col-12">
                   <label>in Building/Society/Project</label>
-                  <input type="text" class="form-control"
-                  ngModel
-                  formControlName="Name"
-                  [(ngModel)]="propertyView.name">
+                  <input type="text" class="form-control" #propName
+                  (keyup)="propertyView.name = propName.value"
+                  formControlName="Name">
                   <div class="error-block"
                   *ngIf="Name.invalid && (nextClicked || Name.touched)">
                     Please select building, society or project name
@@ -119,8 +119,9 @@
                     <label *ngIf="SellRent.value==1">Price (in USD)</label>
                     <label *ngIf="SellRent.value==2">Rent (in USD)</label>
                     <input type="text" class="form-control"
-                    formControlName="Price"
-                    [(ngModel)]="propertyView.price">
+                    formControlName="Price" #price
+                    (keyup)="propertyView.price = price.value">
+
                     <div class="error-block"
                     *ngIf="Price.invalid && (nextClicked || Price.touched)">
                       Please select
@@ -148,8 +149,8 @@
                   <div class="form-group col-12">
                     <label>Built Area (in Sqr Feet)</label>
                     <input type="text"
-                    class="form-control"
-                    [(ngModel)]="propertyView.builtArea"
+                    class="form-control"  #builtArea
+                    (keyup)="propertyView.builtArea = builtArea.value"
                     formControlName="BuiltArea">
                     <div class="error-block"
                     *ngIf="BuiltArea.invalid && nextClicked">
