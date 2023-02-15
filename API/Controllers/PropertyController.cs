@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using API.Dtos;
 using API.Interfaces;
 using API.Models;
+using System;
 
 namespace API.Controllers
 {
@@ -43,5 +44,18 @@ namespace API.Controllers
             var propertyDTO = mapper.Map<PropertyDetailDto>(property);
             return Ok(propertyDTO);
         }
+
+    [HttpPost("add/")]
+    [AllowAnonymous]
+    public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
+    {
+      var property = mapper.Map<Property>(propertyDto);
+      property.PostedBy = 1;
+      property.LastUpdatedBy = 1;
+      
+      uow.PropertyRepository.AddProperty(property);
+      await uow.SaveAsync();
+      return StatusCode(201);
     }
+  }
 }
