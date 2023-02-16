@@ -23,7 +23,7 @@ export class PropertyListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.route.snapshot.url.toString()) {
-      this.SellRent = 2; // Means we are on rent-property URL else we are on base URL
+      this.SellRent = 1; // Means we are on rent-property URL else we are on base URL
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
         data => {

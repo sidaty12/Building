@@ -45,13 +45,13 @@ namespace API.Controllers
             return Ok(propertyDTO);
         }
 
-    [HttpPost("add/")]
+    [HttpPost("add")]
     [AllowAnonymous]
     public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
     {
       var property = mapper.Map<Property>(propertyDto);
-      property.PostedBy = 1;
-      property.LastUpdatedBy = 1;
+      property.PostedBy = 3;
+      property.LastUpdatedBy = 3;
       
       uow.PropertyRepository.AddProperty(property);
       await uow.SaveAsync();

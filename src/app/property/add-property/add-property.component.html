@@ -223,14 +223,14 @@
                   <div class="btn-group" btnRadioGroup
                   formControlName="RTM">
                     <label class="btn btn-outline-primary mr-2"
-                      btnRadio=1 tabindex="0" role="button"
-                      (click)="propertyView.readyToMove=1"
+                      btnRadio=true tabindex="0" role="button"
+                      (click)="propertyView.readyToMove=true"
                       name="RTM">Yes
                     </label>
 
                     <label class="btn btn-outline-primary"
-                      btnRadio=2  tabindex="0" role="button"
-                      (click)="propertyView.readyToMove=0"
+                      btnRadio=false  tabindex="0" role="button"
+                      (click)="propertyView.readyToMove=false"
 
                       name="RTM">No
                     </label>
