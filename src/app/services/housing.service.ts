@@ -40,13 +40,7 @@ getProperty(id:number){
  }
 
   addProperty(property: Property) {
-    let newProp = [property];
-
-    // Add new property in array if newProp aleady exists in local storag
-    if (localStorage.getItem('newProp')){
-      newProp = [property, ...JSON.parse(localStorage.getItem('newProp'))]
-    }
-    localStorage.setItem('newProp', JSON.stringify(newProp));
+    return this.http.post(this.baseUrl + '/property/add', property);
   }
 
   newPropID(){
@@ -60,7 +54,7 @@ getProperty(id:number){
     }
   }
 
-  getPropertyAge(dateofEstablishment: Date): string
+  getPropertyAge(dateofEstablishment: string): string
     {
         const today = new Date();
         const estDate = new Date(dateofEstablishment);
