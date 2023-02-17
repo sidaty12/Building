@@ -8,7 +8,10 @@ namespace API.Models
   [Table("Photos")]
   public class Photo : BaseEntity
   {
-       [Required]
+
+        [Required]
+        public string PublicId { get; set; }
+        [Required]
         public string ImageUrl { get; set; }
         public bool IsPrimary { get; set; }
         public int PropertyId { get; set; }
