@@ -17,11 +17,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Data.SqlClient;
+using API.Services;
 
 namespace API
 {
+
   public class Startup
   {
+
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
@@ -39,6 +42,7 @@ namespace API
       builder.Password = Configuration.GetSection("DBPassword").Value;
 
       var connectionString = builder.ConnectionString;
+      services.AddSingleton(Configuration);
 
       services.AddDbContext<DataContext>(options =>
       options.UseSqlServer(connectionString));
@@ -46,6 +50,8 @@ namespace API
       services.AddCors(); //This needs to let it default
       services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
       services.AddScoped<IUnitOfWork, UnitOfWork>();
+      services.AddScoped<IPhotoService, PhotoService>();
+
 
       var secretKey = Configuration.GetSection("AppSettings:Key").Value;
 

@@ -16,14 +16,16 @@ namespace API.Controllers
     {
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
-       // private readonly IPhotoService photoService;
+        private readonly IPhotoService photoService;
 
         public PropertyController(IUnitOfWork uow,
-        IMapper mapper)
+        IMapper mapper,
+        IPhotoService photoService)
         {
           //  this.photoService = photoService;
             this.uow = uow;
             this.mapper = mapper;
+      this.photoService = photoService;
         }
 
           //property/list/1
@@ -57,5 +59,18 @@ namespace API.Controllers
       await uow.SaveAsync();
       return StatusCode(201);
     }
+
+
+    [HttpPost("add/photo/{id}")]
+    [Authorize]
+    public async Task<IActionResult> AddPropertyPhoto(IFormFile file, int propId)
+    {
+      var result = await photoService.UploadPhotoAsync(file);
+      if(result.Error != null)
+        return BadRequest(result.Error.Message);
+
+      return Ok(201);
+    }
+   
   }
 }
