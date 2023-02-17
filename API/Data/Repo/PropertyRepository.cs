@@ -49,6 +49,8 @@ namespace API.Data.Repo
             return properties;
         }
 
+
+
         public async Task<Property> GetPropertyByIdAsync(int id)
         {
             var properties = await dc.Properties

@@ -63,7 +63,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FurnishingTypes");
+                    b.ToTable("FurnishingType");
                 });
 
             modelBuilder.Entity("API.Models.Photo", b =>
@@ -88,6 +88,10 @@ namespace API.Migrations
 
                     b.Property<int>("PropertyId")
                         .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
