@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Observable } from 'rxjs';
@@ -40,7 +40,13 @@ getProperty(id:number){
  }
 
   addProperty(property: Property) {
-    return this.http.post(this.baseUrl + '/property/add', property);
+    const httpOptions = {
+      headers: new HttpHeaders ({
+          Authorization: 'Bearer '+ localStorage.getItem('token')
+       })
+  };
+
+    return this.http.post(this.baseUrl + '/property/add', property, httpOptions);
   }
 
   newPropID(){
