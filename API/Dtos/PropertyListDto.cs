@@ -21,6 +21,6 @@ namespace API.Dtos
          public DateTime EstPossessionOn { get; set; }
 
     //  public DateTime EstPossessionOn { get; set; }
-    // public string Photo { get; set; }
+         public string Photo { get; set; }
   }
 }
