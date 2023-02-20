@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-2" *ngFor="let photo of property.photos">
+  <div class="col-2 mb-3" *ngFor="let photo of property.photos">
 
       <img src="{{photo.imageUrl}}" alt="{{photo.imageUrl}}" class="img-thumbnail p-1">
       <div class="text-center">
@@ -10,5 +10,10 @@
     (click)="deletePhoto(property.id, photo)"><i class="fa fa-trash"></i></button>
       </div>
   </div>
-
+  <div ng2FileDrop [uploader]="uploader" class="card bg-faded p-3 text-center">
+    <i class="fa fa-upload fa-2x"></i>
+       Drop Photo here
   </div>
+  </div>
+
+

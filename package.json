@@ -25,6 +25,7 @@
     "@ngx-translate/core": "^12.1.2",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^5.2.2",
+    "ng2-file-upload": "^3.0.0",
     "ng2-material-dropdown": "^1.0.0",
     "ngx-bootstrap": "^9.0.0",
     "ngx-toastr": "^12.1.0",
