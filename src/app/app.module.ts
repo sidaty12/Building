@@ -22,6 +22,7 @@ import { AddPropertyComponent } from './property/add-property/add-property.compo
 import { PropertDetailComponent } from './property/property-detail/property-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { PhotoEditorComponent } from './property/PhotoEditor/PhotoEditor.component';
 //import { UserServiceService } from './services/user-service.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
       UserLoginComponent,
       UserRegisterComponent,
       PropertyListComponent,
+      PhotoEditorComponent,
       FilterPipe,
       SortPipe
 
