@@ -1,27 +1,25 @@
-# MyFirstApp
+Projet Achat et Location de Biens Mobiliers
+Description
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.
+Ce projet consiste en une application web permettant aux utilisateurs d'acheter et de louer des biens mobiliers tels que des meubles, des équipements électroniques, des véhicules et autres.
 
-## Development server
+L'application est développée en utilisant les technologies C# pour le backend et Angular pour le frontend. Elle propose une interface utilisateur conviviale et intuitive, permettant aux utilisateurs de facilement rechercher et sélectionner des biens mobiliers à acheter ou à louer.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Fonctionnalités principales
 
-## Code scaffolding
+Recherche de biens mobiliers par catégorie, prix, localisation, etc.
+Affichage des détails des biens sélectionnés, y compris les photos, les caractéristiques et les prix.
+Fonctionnalité d'avis et de notation pour les utilisateurs ayant acheté ou loué des biens.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Installation et Configuration
+Cloner le dépôt du projet sur votre ordinateur local.
+Assurez-vous que vous avez les versions les plus récentes de Node.js et Angular CLI installées sur votre ordinateur.
+Accédez au dossier frontend et exécutez la commande npm install pour installer les dépendances Angular nécessaires.
+Accédez au dossier backend et ouvrez le fichier appsettings.json pour configurer les paramètres de connexion à la base de données.
+Exécutez l'application en exécutant ng serve dans le dossier frontend et dotnet run dans le dossier backend.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Auteur
+Sidaty
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Les contributions sont les bienvenues! 
