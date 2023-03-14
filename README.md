@@ -13,6 +13,7 @@ Fonctionnalité d'avis et de notation pour les utilisateurs ayant acheté ou lou
 
 
 Installation et Configuration
+
 Cloner le dépôt du projet sur votre ordinateur local.
 Assurez-vous que vous avez les versions les plus récentes de Node.js et Angular CLI installées sur votre ordinateur.
 Accédez au dossier frontend et exécutez la commande npm install pour installer les dépendances Angular nécessaires.
