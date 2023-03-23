@@ -60,6 +60,15 @@ namespace API.Controllers
       return StatusCode(201);
     }
 
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteProperty(int id)
+    {
+
+      uow.PropertyRepository.DeleteProperty(id);
+      await uow.SaveAsync();
+      return Ok(id);
+    }
+
 
     [HttpPost("add/photo/{propId}")]
     [Authorize]

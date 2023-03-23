@@ -22,7 +22,8 @@ namespace API.Data.Repo
 
         public void DeleteProperty(int id)
         {
-            throw new System.NotImplementedException();
+          var property = dc.Properties.Find(id);
+          dc.Properties.Remove(property); ;
         }
 
         public async Task<IEnumerable<Property>> GetPropertiesAsync(int sellRent)

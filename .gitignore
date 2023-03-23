@@ -52,3 +52,32 @@ Thumbs.db
 
 bin
 obj
+
+# Fichiers générés automatiquement
+node_modules/
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Fichiers de configuration
+appsettings.json
+appsettings.Development.json
+launchSettings.json
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+
+# Fichiers d'analyse du code
+*.sln.docstates
+*.suo
+*.user
+*.vs
+
+# Fichiers spécifiques au projet Web
+wwwroot/
+*.csproj.user
+*.config
+*.cshtml
