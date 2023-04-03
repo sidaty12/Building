@@ -64,7 +64,7 @@ namespace API.Controllers
     public async Task<IActionResult> DeleteProperty(int id)
     {
 
-      uow.PropertyRepository.DeleteProperty(id);
+      uow.PropertyRepository.DeletePropertyByIdAsync(id);
       await uow.SaveAsync();
       return Ok(id);
     }
