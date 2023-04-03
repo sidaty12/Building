@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IProperty } from 'src/app/model/iproperty';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
+import { HousingService } from 'src/app/services/housing.service';
 
 
 @Component({
@@ -11,8 +13,24 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 }
 
 )
-export class PropertyCardComponent {
+export class PropertyCardComponent implements OnInit {
+  properties: IProperty[];
+
 @Input() property: IPropertyBase;
 @Input() hideIcons: boolean;
 
+constructor(private housingService : HousingService){}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+deleteProperty(propertyId: number) {
+  this.housingService.deleteProperty(propertyId).subscribe(
+    data => {
+      console.log(data);
+      // Mettre à jour la liste des propriétés ici si nécessaire
+    },
+    error => console.log(error)
+  );
+}
 }

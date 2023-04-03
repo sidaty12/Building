@@ -49,6 +49,17 @@ getProperty(id:number){
     return this.http.post(this.baseUrl + '/property/add', property, httpOptions);
   }
 
+  deleteProperty(propertyId: number) {
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer '+ localStorage.getItem('token')
+        })
+    };
+    return this.http.delete(`${this.baseUrl}/property/delete/${propertyId}`, httpOptions);
+
+}
+
+
   newPropID(){
     if (localStorage.getItem('PID')) {
       localStorage.setItem('PID', String(+localStorage.getItem('PID') + 1));

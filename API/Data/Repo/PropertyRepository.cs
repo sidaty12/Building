@@ -20,10 +20,10 @@ namespace API.Data.Repo
             dc.Properties.Add(property);
         }
 
-        public void DeleteProperty(int id)
+        public void DeletePropertyByIdAsync(int id)
         {
           var property = dc.Properties.Find(id);
-          dc.Properties.Remove(property); ;
+          dc.Properties.Remove(property); 
         }
 
         public async Task<IEnumerable<Property>> GetPropertiesAsync(int sellRent)
