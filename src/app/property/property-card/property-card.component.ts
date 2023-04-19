@@ -21,7 +21,6 @@ export class PropertyCardComponent implements OnInit {
 
 constructor(private housingService : HousingService){}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 deleteProperty(propertyId: number) {
