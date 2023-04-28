@@ -35,7 +35,7 @@ getProperty(id:number){
 
 }
 
-  getAllProperties(SellRent?: number): Observable<Property[]> {
+  getAllProperties(SellRent?: string): Observable<Property[]> {
     return this.http.get<Property[]>(this.baseUrl + '/property/list/'+SellRent.toString());
  }
 

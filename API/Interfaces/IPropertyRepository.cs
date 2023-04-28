@@ -6,7 +6,7 @@ namespace API.Interfaces
 {
     public interface IPropertyRepository
     {
-        Task<IEnumerable<Property>> GetPropertiesAsync(int sellRent);
+        Task<IEnumerable<Property>> GetPropertiesAsync(string sellRent);
         Task<Property> GetPropertyDetailAsync(int id);
         Task<Property> GetPropertyByIdAsync(int id);
         void AddProperty(Property property);

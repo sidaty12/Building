@@ -73,7 +73,7 @@ export class AddPropertyComponent implements OnInit {
   CreateAddPropertyForm() {
     this.addPropertyForm = this.fb.group({
       BasicInfo: this.fb.group({
-        SellRent: ['1' , Validators.required],
+        SellRent: [null , Validators.required],
         BHK: [null, Validators.required],
         PType: [null, Validators.required],
         FType: [null, Validators.required],
@@ -251,7 +251,7 @@ export class AddPropertyComponent implements OnInit {
 // sent to value of different property to local storage
   mapProperty(): void {
     this.property.id = this.housingService.newPropID();
-    this.property.sellRent = +this.SellRent.value;
+    this.property.sellRent = this.SellRent.value;
     this.property.bhk = this.BHK.value;
     this.property.propertyTypeId = this.PType.value;
     this.property.name = this.Name.value;

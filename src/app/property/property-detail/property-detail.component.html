@@ -8,7 +8,7 @@
       <div class="card-body">
         <h1 class="card-title">{{property.name}}</h1>
         <div>
-            <strong>{{property.bhk}} BHK {{property.propertyType}} @ ${{property.price}}</strong>
+           <strong>{{property.bhk}} BHK {{property.propertyType}} @ ${{property.price}}</strong>
         </div>
         <div>
            <strong>in {{property.city}}</strong>
@@ -29,8 +29,8 @@
 
         <div>
           <strong>Available for: </strong>
-          <span *ngIf="property.sellRent == 1">Purchase</span>
-          <span *ngIf="property.sellRent == 2">Rent</span>
+          <span *ngIf="property.sellRent === 'Sell'">Purchase</span>
+          <span *ngIf="property.sellRent == 'Rent'">Rent</span>
 
       </div>
 
