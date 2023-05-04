@@ -75,6 +75,8 @@ launchSettings.json
 *.suo
 *.user
 *.vs
+appsettings.json
+
 
 # Fichiers spécifiques au projet Web
 wwwroot/
