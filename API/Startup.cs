@@ -18,6 +18,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Data.SqlClient;
 using API.Services;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using API.Data.Mongo;
 
 namespace API
 {
@@ -44,6 +47,20 @@ namespace API
       var connectionString = builder.ConnectionString;
       services.AddSingleton(Configuration);
 
+      // Configure MongoDB settings
+      services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
+      services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
+
+      // Configure MongoDB client with Stable API version 1
+      services.AddSingleton<IMongoClient>(sp =>
+      {
+        var mongoDBSettings = sp.GetRequiredService<IMongoDBSettings>();
+        var clientSettings = MongoClientSettings.FromConnectionString(mongoDBSettings.ConnectionString);
+        clientSettings.ServerApi = new ServerApi(ServerApiVersion.V1);
+        return new MongoClient(clientSettings);
+      });
+
+
       services.AddDbContext<DataContext>(options =>
       options.UseSqlServer(connectionString));
       services.AddControllers().AddNewtonsoftJson();
@@ -53,10 +70,10 @@ namespace API
       services.AddScoped<IPhotoService, PhotoService>();
 
 
-      var secretKey = Configuration.GetSection("AppSettings:Key").Value;
+     // var secretKey = Configuration.GetSection("AppSettings:Key").Value;
 
-      var key = new SymmetricSecurityKey(Encoding.UTF8
-      .GetBytes(secretKey));
+     // var key = new SymmetricSecurityKey(Encoding.UTF8
+     // .GetBytes(secretKey));
 
       services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
           .AddJwtBearer(opt =>
@@ -66,7 +83,7 @@ namespace API
               ValidateIssuerSigningKey = true,
               ValidateIssuer = false,
               ValidateAudience = false,
-              IssuerSigningKey = key
+             // IssuerSigningKey = key
 
             };
           });
