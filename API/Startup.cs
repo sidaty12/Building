@@ -92,7 +92,7 @@ namespace API
           });
     }
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMongoClient mongoClient)
+      public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMongoClient mongoClient)
       {
 
         app.ConfigureExeptionHandeler(env);
@@ -109,17 +109,25 @@ namespace API
         options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()); //This needs to set everything allowed
 
         app.UseAuthentication();
-        //app.UseAuthorization();
 
-        //app.UseEndpoints(endpoints =>
-        //{
-          //endpoints.MapControllers();
-        //});
+      // Insérer des données initiales dans la base de données MongoDB
+      
 
-      InsertPersonAsync(mongoClient).GetAwaiter().GetResult();
+      var mongoDbConnectionString = Configuration.GetSection("MongoDBSettings:ConnectionString").Value;
+      var seedDatabase = new SeedDatabaseMongo(mongoClient, Configuration);
+      await seedDatabase.Seed();
+
+      //app.UseAuthorization();
+
+      //app.UseEndpoints(endpoints =>
+      //{
+      //endpoints.MapControllers();
+      //});
+
+      // InsertPersonAsync(mongoClient).GetAwaiter().GetResult();
 
     }
-
+    /*
     private async Task InsertPersonAsync(IMongoClient mongoClient)
     {
       var database = mongoClient.GetDatabase("MyDbBuildingMong");
@@ -134,7 +142,7 @@ namespace API
       await personCollection.InsertOneAsync(person);
       Console.WriteLine("Person inserted successfully");
     }
-
+      */
   }
 }
 
