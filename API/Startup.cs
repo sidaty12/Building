@@ -24,6 +24,9 @@ using API.Data.Mongo;
 using API.Models.ModelDb;
 using System.Threading.Tasks;
 using System;
+using API.Data.Repo;
+using API.Data.Mongo.Interfaces;
+using API.Data.Mongo.MongoRepo;
 
 namespace API
 {
@@ -42,12 +45,12 @@ namespace API
     public void ConfigureServices(IServiceCollection services)
     {
 
-     // var builder = new SqlConnectionStringBuilder(
-        //Configuration.GetConnectionString("Default"));
+      var builder = new SqlConnectionStringBuilder(
+        Configuration.GetConnectionString("Default"));
 
-      //builder.Password = Configuration.GetSection("DBPassword").Value;
+      builder.Password = Configuration.GetSection("DBPassword").Value;
 
-      //var connectionString = builder.ConnectionString;
+     var connectionString = builder.ConnectionString;
       services.AddSingleton(Configuration);
 
       // Configure MongoDB settings
@@ -65,18 +68,20 @@ namespace API
 
 
       services.AddDbContext<DataContext>(options =>
-     // options.UseSqlServer(connectionString));
-      services.AddControllers().AddNewtonsoftJson());
+      options.UseSqlServer(connectionString));
+      services.AddControllers().AddNewtonsoftJson();
       services.AddCors(); //This needs to let it default
       services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
       services.AddScoped<IUnitOfWork, UnitOfWork>();
       services.AddScoped<IPhotoService, PhotoService>();
+      services.AddScoped<ICityRepo, CityRepo>();
 
 
-     // var secretKey = Configuration.GetSection("AppSettings:Key").Value;
 
-     // var key = new SymmetricSecurityKey(Encoding.UTF8
-     // .GetBytes(secretKey));
+      // var secretKey = Configuration.GetSection("AppSettings:Key").Value;
+
+      // var key = new SymmetricSecurityKey(Encoding.UTF8
+      // .GetBytes(secretKey));
 
       services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
           .AddJwtBearer(opt =>
@@ -90,9 +95,12 @@ namespace API
 
             };
           });
+
+      services.AddAuthorization();
+
     }
-      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMongoClient mongoClient)
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMongoClient mongoClient)
       {
 
         app.ConfigureExeptionHandeler(env);
@@ -117,12 +125,12 @@ namespace API
       var seedDatabase = new SeedDatabaseMongo(mongoClient, Configuration);
       await seedDatabase.Seed();
 
-      //app.UseAuthorization();
+      app.UseAuthorization();
 
-      //app.UseEndpoints(endpoints =>
-      //{
-      //endpoints.MapControllers();
-      //});
+      app.UseEndpoints(endpoints =>
+      {
+      endpoints.MapControllers();
+      });
 
       // InsertPersonAsync(mongoClient).GetAwaiter().GetResult();
 
