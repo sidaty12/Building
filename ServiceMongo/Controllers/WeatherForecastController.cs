@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,6 +34,12 @@ namespace ServiceMongo.Controllers
         Summary = Summaries[rng.Next(Summaries.Length)]
       })
       .ToArray();
+    }
+
+    [HttpGet("test")]
+    public IActionResult TestGetMethod()
+    {
+      return Ok("Test GET method works!");
     }
   }
 }
