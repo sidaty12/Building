@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+
 
 namespace API.Controllers
 {
@@ -15,10 +17,13 @@ namespace API.Controllers
   public class MongCityController : ControllerBase
   {
     private readonly ICityRepo _cityRepository;
+    private readonly ILogger<MongCityController> _logger;
 
-    public MongCityController(ICityRepo cityRepository)
+
+    public MongCityController(ICityRepo cityRepository, ILogger<MongCityController> logger)
     {
       _cityRepository = cityRepository;
+      _logger = logger;
     }
 
     
@@ -33,15 +38,28 @@ namespace API.Controllers
     [HttpGet("{id}")]
     public async Task<ActionResult<MongoCity>> GetCity(string id)
     {
+      _logger.LogInformation($"Recherche de la ville avec l'identifiant : {id}");
+
       var city = await _cityRepository.GetByIdAsync(id);
 
       if (city == null)
       {
+        _logger.LogWarning($"Aucune ville trouvée avec l'identifiant : {id}");
+
         return NotFound();
       }
 
+      _logger.LogInformation($"Ville trouvée : {city.Name}, {city.Country}");
+
       return Ok(city);
     }
+
+    [HttpGet("test")]
+    public IActionResult TestGetMethod()
+    {
+      return Ok("Test GET method works!");
+    }
+
 
   }
 }

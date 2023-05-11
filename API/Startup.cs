@@ -66,6 +66,8 @@ namespace API
         return new MongoClient(clientSettings);
       });
 
+      services.AddSingleton<IMongoDbContext, MongoDbContext>();
+
 
       services.AddDbContext<DataContext>(options =>
       options.UseSqlServer(connectionString));
