@@ -26,7 +26,7 @@ namespace API.Data.Repo
           dc.Properties.Remove(property); 
         }
 
-        public async Task<IEnumerable<Property>> GetPropertiesAsync(int sellRent)
+        public async Task<IEnumerable<Property>> GetPropertiesAsync(string sellRent)
         {
             var properties = await dc.Properties
             .Include(p => p.PropertyType)
@@ -34,7 +34,7 @@ namespace API.Data.Repo
            .Include(p => p.FurnishingType)
            .Include(p => p.Photos)
 
-            .Where(p => p.SellRent == sellRent )
+            .Where(p => p.SellRent == sellRent)
             .ToListAsync();
             return properties;
         }

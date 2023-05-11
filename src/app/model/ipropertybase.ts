@@ -1,7 +1,7 @@
 export interface  IPropertyBase {
 
   id: number;
-  sellRent: number;
+  sellRent: string;
   name: string;
   propertyType: string;
   furnishingType: string;
@@ -12,5 +12,6 @@ export interface  IPropertyBase {
   readyToMove: Boolean;
   photo?: string;
   estPossessionOn?: string;
+
 
 }

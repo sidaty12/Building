@@ -38,11 +38,11 @@ const appRoutes: Routes = [
 {path: 'add-property', component: AddPropertyComponent},
 {path: 'property-detail/:id',
                     component: PropertDetailComponent,
-                    resolve: {prp: PropertyDetailResolverService}}, // , resolve: {prp: PropertyDetailResolverService}},
+                    resolve: {prp: PropertyDetailResolverService}},
 {path: 'user/login', component: UserLoginComponent},
 {path: 'user/register', component: UserRegisterComponent},
 {path: '**', component: PropertyListComponent}
-// tslint:disable-next-line: align
+
 ];
 
 @NgModule({

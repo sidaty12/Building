@@ -9,7 +9,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
   styleUrls: ['./property-list.component.css']
 })
 export class PropertyListComponent implements OnInit {
-  SellRent = 1;
+  SellRent = 'sell';
   properties: IPropertyBase[];
   Today = new Date();
   City = '';
@@ -23,7 +23,7 @@ export class PropertyListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.route.snapshot.url.toString()) {
-      this.SellRent = 1; // Means we are on rent-property URL else we are on base URL
+      this.SellRent = 'Rent'; // Means we are on rent-property URL else we are on base URL
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
         data => {
