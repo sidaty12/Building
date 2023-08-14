@@ -19,6 +19,7 @@ using System.Text;
 using Microsoft.Data.SqlClient;
 using API.Services;
 
+
 namespace API
 {
 
@@ -48,6 +49,13 @@ namespace API
       options.UseSqlServer(connectionString));
       services.AddControllers().AddNewtonsoftJson();
       services.AddCors(); //This needs to let it default
+
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mon API", Version = "v1" });
+      });
+
+
       services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
       services.AddScoped<IUnitOfWork, UnitOfWork>();
       services.AddScoped<IPhotoService, PhotoService>();
