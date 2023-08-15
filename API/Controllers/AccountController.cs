@@ -83,9 +83,11 @@ namespace API.Controllers
     private string CreateJWT(User user)
     {
 
-      //   var secretKey = configuration.GetSection("AppSettings:key").Value;
 
-      var secretKey = configuration.GetSection("AppSettings:Key").Value;
+      // var secretKey = configuration.GetSection("AppSettings:Key").Value;
+
+      var secretKey = "votre_clé_secrète_ici_avec_au_moins_16_caractères";
+
 
       var key = new SymmetricSecurityKey(Encoding.UTF8
       .GetBytes(secretKey));

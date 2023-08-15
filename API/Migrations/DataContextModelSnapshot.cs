@@ -122,7 +122,7 @@ namespace API.Migrations
                     b.Property<int>("BuiltArea")
                         .HasColumnType("int");
 
-                    b.Property<int>("CarpetArea")
+                    b.Property<int?>("CarpetArea")
                         .HasColumnType("int");
 
                     b.Property<int>("CityId")
@@ -134,13 +134,13 @@ namespace API.Migrations
                     b.Property<DateTime>("EstPossessionOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FloorNo")
+                    b.Property<int?>("FloorNo")
                         .HasColumnType("int");
 
                     b.Property<int>("FurnishingTypeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Gated")
+                    b.Property<bool?>("Gated")
                         .HasColumnType("bit");
 
                     b.Property<int>("LastUpdatedBy")
@@ -176,10 +176,10 @@ namespace API.Migrations
                     b.Property<int>("Security")
                         .HasColumnType("int");
 
-                    b.Property<int>("SellRent")
-                        .HasColumnType("int");
+                    b.Property<string>("SellRent")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalFloors")
+                    b.Property<int?>("TotalFloors")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

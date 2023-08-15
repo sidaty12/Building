@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230119112810_FurnishingTypes")]
-    partial class FurnishingTypes
+    [Migration("20230815094529_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FurnishingTypes");
+                    b.ToTable("FurnishingType");
                 });
 
             modelBuilder.Entity("API.Models.Photo", b =>
@@ -90,6 +90,10 @@ namespace API.Migrations
 
                     b.Property<int>("PropertyId")
                         .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -120,7 +124,7 @@ namespace API.Migrations
                     b.Property<int>("BuiltArea")
                         .HasColumnType("int");
 
-                    b.Property<int>("CarpetArea")
+                    b.Property<int?>("CarpetArea")
                         .HasColumnType("int");
 
                     b.Property<int>("CityId")
@@ -132,13 +136,13 @@ namespace API.Migrations
                     b.Property<DateTime>("EstPossessionOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FloorNo")
+                    b.Property<int?>("FloorNo")
                         .HasColumnType("int");
 
                     b.Property<int>("FurnishingTypeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Gated")
+                    b.Property<bool?>("Gated")
                         .HasColumnType("bit");
 
                     b.Property<int>("LastUpdatedBy")
@@ -174,10 +178,10 @@ namespace API.Migrations
                     b.Property<int>("Security")
                         .HasColumnType("int");
 
-                    b.Property<int>("SellRent")
-                        .HasColumnType("int");
+                    b.Property<string>("SellRent")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TotalFloors")
+                    b.Property<int?>("TotalFloors")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

@@ -16,7 +16,7 @@ namespace API.Data.Repo
     }
     public async Task<IEnumerable<FurnishingType>> GetFurnishingTypesAsync()
     {
-      return await dc.FurnishingType.ToListAsync();
+      return await dc.FurnishingTypes.ToListAsync();
     }
   }
 }

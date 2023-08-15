@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class NewMig : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,8 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -57,6 +59,8 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
                     Username = table.Column<string>(nullable: false),
                     Password = table.Column<byte[]>(nullable: false),
                     PasswordKey = table.Column<byte[]>(nullable: true)
@@ -72,7 +76,9 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SellRent = table.Column<int>(nullable: false),
+                    LastUpdatedOn = table.Column<DateTime>(nullable: false),
+                    LastUpdatedBy = table.Column<int>(nullable: false),
+                    SellRent = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     PropertyTypeId = table.Column<int>(nullable: false),
                     FurnishingTypeId = table.Column<int>(nullable: false),
@@ -81,14 +87,14 @@ namespace API.Migrations
                     BuiltArea = table.Column<int>(nullable: false),
                     CityId = table.Column<int>(nullable: false),
                     ReadyToMove = table.Column<bool>(nullable: false),
-                    CarpetArea = table.Column<int>(nullable: false),
+                    CarpetArea = table.Column<int>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Address2 = table.Column<string>(nullable: true),
-                    FloorNo = table.Column<int>(nullable: false),
-                    TotalFloors = table.Column<int>(nullable: false),
+                    FloorNo = table.Column<int>(nullable: true),
+                    TotalFloors = table.Column<int>(nullable: true),
                     MainEntrance = table.Column<string>(nullable: true),
                     Security = table.Column<int>(nullable: false),
-                    Gated = table.Column<bool>(nullable: false),
+                    Gated = table.Column<bool>(nullable: true),
                     Maintenance = table.Column<int>(nullable: false),
                     EstPossessionOn = table.Column<DateTime>(nullable: false),
                     Age = table.Column<int>(nullable: false),
@@ -133,6 +139,7 @@ namespace API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LastUpdatedOn = table.Column<DateTime>(nullable: false),
                     LastUpdatedBy = table.Column<int>(nullable: false),
+                    PublicId = table.Column<string>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: false),
                     IsPrimary = table.Column<bool>(nullable: false),
                     PropertyId = table.Column<int>(nullable: false)
