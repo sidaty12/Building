@@ -9,6 +9,10 @@ dist/
 .node_cache/
 .cache-loader/
 
+# Angular cache
+.angular/cache/
+
+
 # .NET Core
 bin/
 obj/
