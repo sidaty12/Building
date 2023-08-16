@@ -1,64 +1,45 @@
-## ASP.NET Core
-# Fichiers générés par le runtime
+# Webpack
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+
+# Webpack cache
+.node_cache/
+.cache-loader/
+
+# .NET Core
 bin/
 obj/
-# Les fichiers générés par les outils
-*.rsuser
+*.webproj.user
+*.csproj.user
+*.pubxml.user
+*.pubxml
+
+# Visual Studio for Mac
+.vscode/
+.vscode/*
+
+# Rider
+.idea/
+
+# VS Code
 *.suo
-*.user
-*.userosscache
-*.dbmdl
-*.jfm
-*.svclog
-*.scc
+*.ntvsloa*
+*.njsproj
+*.sln
+*.sln.docstates
+
+# Rider
+.idea/
 
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
 
-# Les fichiers du recycle bin utilisés sur les lecteurs de fichier via le bureau
+# Recycle Bin used on file shares
 $RECYCLE.BIN/
 
 # VS Code directories
 .vscode/
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-## Angular (basé sur Angular 15, des modifications peuvent être nécessaires si Angular évolue)
-# Fichiers générés par les outils
-/node_modules/
-/dist/
-*.log
-logs
-*.pid
-*.seed
-*.pid.lock
-
-# IDEs et éditeurs
-/.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# performance logs
-*.trace.hookslow.log
-
-# npm
-npm-debug.log*
-
-# System Files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
