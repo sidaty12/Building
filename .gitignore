@@ -1,21 +1,46 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+## ASP.NET Core
+# Fichiers générés par le runtime
+bin/
+obj/
+# Les fichiers générés par les outils
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.dbmdl
+*.jfm
+*.svclog
+*.scc
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
 
-# dependencies
-/node_modules
+# Les fichiers du recycle bin utilisés sur les lecteurs de fichier via le bureau
+$RECYCLE.BIN/
 
-# profiling files
-chrome-profiler-events*.json
-speed-measure-plugin*.json
+# VS Code directories
+.vscode/
 
-# IDEs and editors
-/.idea
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## Angular (basé sur Angular 15, des modifications peuvent être nécessaires si Angular évolue)
+# Fichiers générés par les outils
+/node_modules/
+/dist/
+*.log
+logs
+*.pid
+*.seed
+*.pid.lock
+
+# IDEs et éditeurs
+/.idea/
 .project
 .classpath
 .c9/
@@ -23,68 +48,17 @@ speed-measure-plugin*.json
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# performance logs
+*.trace.hookslow.log
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# npm
+npm-debug.log*
 
 # System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
-
-# Firebase
-.firebase
-*-debug.log
-.runtimeconfig.json
-
-bin
-obj
-
-# Fichiers générés automatiquement
-node_modules/
-bin/
-obj/
-*.dll
-*.exe
-*.pdb
-
-# Fichiers de configuration
-appsettings.json
-appsettings.Development.json
-launchSettings.json
-
-# Fichiers de sauvegarde
-*.bak
-*.backup
-
-# Fichiers d'analyse du code
-*.sln.docstates
-*.suo
-*.user
-*.vs
-
-# Fichiers spécifiques au projet Web
-wwwroot/
-*.csproj.user
-*.config
-*.cshtml
-
-
-.angular/cache/
-*.webpack.*
-*.babel-webpack.*
-DesignTimeBuild/
-projectEvaluation/
