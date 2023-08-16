@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IProperty } from 'src/app/model/iproperty';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { HousingService } from 'src/app/services/housing.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-property-card',
@@ -19,7 +19,7 @@ export class PropertyCardComponent implements OnInit {
 @Input() property: IPropertyBase;
 @Input() hideIcons: boolean;
 
-constructor(private housingService : HousingService){}
+constructor(private housingService : HousingService, private authService: AuthService){}
   ngOnInit(): void {
   }
 
@@ -33,7 +33,8 @@ deleteProperty(propertyId: number) {
   );
 }
 
-isLoggedIn(): boolean {
-  return !!localStorage.getItem('userName');
+isLoggedIn() : boolean {
+  return this.authService.isLoggedIn();
 }
+
 }
