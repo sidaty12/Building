@@ -61,6 +61,7 @@ namespace API.Controllers
     }
 
     [HttpDelete("delete/{id}")]
+    [Authorize]
     public async Task<IActionResult> DeleteProperty(int id)
     {
 

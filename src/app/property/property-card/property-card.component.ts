@@ -32,4 +32,8 @@ deleteProperty(propertyId: number) {
     error => console.log(error)
   );
 }
+
+isLoggedIn(): boolean {
+  return !!localStorage.getItem('userName');
+}
 }
