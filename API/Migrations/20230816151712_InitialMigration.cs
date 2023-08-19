@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FurnishingType",
+                name: "FurnishingTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -35,7 +35,7 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FurnishingType", x => x.Id);
+                    table.PrimaryKey("PK_FurnishingTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,7 +63,9 @@ namespace API.Migrations
                     LastUpdatedBy = table.Column<int>(nullable: false),
                     Username = table.Column<string>(nullable: false),
                     Password = table.Column<byte[]>(nullable: false),
-                    PasswordKey = table.Column<byte[]>(nullable: true)
+                    PasswordKey = table.Column<byte[]>(nullable: true),
+                    RefreshToken = table.Column<string>(nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,9 +114,9 @@ namespace API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Properties_FurnishingType_FurnishingTypeId",
+                        name: "FK_Properties_FurnishingTypes_FurnishingTypeId",
                         column: x => x.FurnishingTypeId,
-                        principalTable: "FurnishingType",
+                        principalTable: "FurnishingTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -193,7 +195,7 @@ namespace API.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
-                name: "FurnishingType");
+                name: "FurnishingTypes");
 
             migrationBuilder.DropTable(
                 name: "Users");

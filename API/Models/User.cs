@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace API.Models
@@ -12,6 +13,9 @@ namespace API.Models
     [Required]
     public byte[] Password { get; set; }
 
-     public byte[] PasswordKey { get; set; }
+    public byte[] PasswordKey { get; set; }
+
+    public string RefreshToken { get; set; }
+    public DateTime RefreshTokenExpiryTime { get; set; }
   }
 }

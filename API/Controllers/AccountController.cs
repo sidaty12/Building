@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using WebAPI.Errors;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 using API.Extentions;
-
+using System.Security.Cryptography;
 
 namespace API.Controllers
 {
@@ -50,8 +50,50 @@ namespace API.Controllers
       var loginRes = new LoginResDto();
       loginRes.UserName = user.Username;
       loginRes.Token = CreateJWT(user);
+      loginRes.RefreshToken = GenerateRefreshToken();
+      user.RefreshToken = loginRes.RefreshToken;
+      user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+      await uow.SaveAsync();
 
       return Ok(loginRes);
+    }
+
+    private string GenerateRefreshToken()
+    {
+      var randomNumber = new byte[32];
+      using (var rng = RandomNumberGenerator.Create())
+      {
+        rng.GetBytes(randomNumber);
+        return Convert.ToBase64String(randomNumber);
+      }
+    }
+
+    [HttpPost("refresh-token")]
+
+    public async Task<IActionResult> RefreshToken(string refreshToken)
+    {
+      var user = await uow.UserRepository.GetUserByRefreshToken(refreshToken);
+      if (user == null || user.RefreshTokenExpiryTime <= DateTime.Now)
+        return BadRequest("Invalid token");
+
+      var newToken = CreateJWT(user);
+      var newRefreshToken = GenerateRefreshToken();
+      user.RefreshToken = newRefreshToken;
+      await uow.SaveAsync();
+
+      return Ok(new { Token = newToken, RefreshToken = newRefreshToken });
+    }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Legout([FromBody] LogoutRequest refreshToken)
+    {
+      var user = await uow.UserRepository.GetUserByRefreshToken(refreshToken.RefreshToken);
+      if (user == null) return BadRequest("Invalid request");
+
+      user.RefreshToken = null;
+      await uow.SaveAsync();
+
+      return Ok();
     }
 
     [HttpPost("register")]

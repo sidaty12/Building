@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230815094529_initial")]
+    [Migration("20230817121115_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FurnishingType");
+                    b.ToTable("FurnishingTypes");
                 });
 
             modelBuilder.Entity("API.Models.Photo", b =>
@@ -238,6 +238,12 @@ namespace API.Migrations
 
                     b.Property<byte[]>("PasswordKey")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
                         .IsRequired()

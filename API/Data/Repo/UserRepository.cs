@@ -46,6 +46,11 @@ namespace API.Data.Repo
       }
     }
 
+    public async Task<User> GetUserByRefreshToken(string refreshToken)
+    {
+      return await dc.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+    }
+
     public void Register(string userName, string password)
     {
       byte[] passwordHash, passwordKey;
