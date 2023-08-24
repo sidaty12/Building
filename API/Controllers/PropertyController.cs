@@ -73,12 +73,12 @@ namespace API.Controllers
       }
 
       // Vérifiez si l'utilisateur actuellement connecté est celui qui a posté la propriété
-      var currentUserId = GetUserId();
+    var currentUserId = GetUserId();
       if (property.PostedBy != currentUserId)
       {
         return Unauthorized("You are not authorized to delete this property.");
       }
-
+    
       uow.PropertyRepository.DeletePropertyByIdAsync(id);
       await uow.SaveAsync();
       return Ok(id);
