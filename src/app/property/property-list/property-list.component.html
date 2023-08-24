@@ -21,7 +21,7 @@
 
   <div *ngFor="let property of properties|filter:SearchCity:'City'|sort:[SortbyParam, SortDirection]" class="col-sm-4">
     <div class="shadow-lg p-3 mb-4">
-        <app-property-card [property]="property"></app-property-card>
+        <app-property-card [property]="property" (propertyDeleted)="onPropertyDeleted()"></app-property-card>
     </div>
 </div>
 </div>

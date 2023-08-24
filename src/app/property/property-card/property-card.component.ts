@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IProperty } from 'src/app/model/iproperty';
 import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { HousingService } from 'src/app/services/housing.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-property-card',
@@ -14,23 +15,30 @@ import { AuthService } from 'src/app/services/auth.service';
 
 )
 export class PropertyCardComponent implements OnInit {
-  properties: IProperty[];
+ 
 
 @Input() property: IPropertyBase;
 @Input() hideIcons: boolean;
+@Output() propertyDeleted = new EventEmitter<void>();
 
-constructor(private housingService : HousingService, private authService: AuthService){}
+
+constructor(private housingService : HousingService, private authService: AuthService, 
+  private alertify : AlertifyService){}
   ngOnInit(): void {
   }
 
 deleteProperty(propertyId: number) {
   this.housingService.deleteProperty(propertyId).subscribe(
-    data => {
+    (data) => {
+      this.alertify.success("Property deleted successfully!");
+      this.propertyDeleted.emit();
       console.log(data);
-      // Mettre à jour la liste des propriétés ici si nécessaire
-    },
-    error => console.log(error)
-  );
+     },
+    
+    error => {
+      console.log(error);
+    this.alertify.error("Ops You are not authorized to delete this property");
+    });
 }
 
 isLoggedIn() : boolean {

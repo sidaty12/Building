@@ -64,6 +64,20 @@ namespace API.Controllers
     [Authorize]
     public async Task<IActionResult> DeleteProperty(int id)
     {
+      var property = await uow.PropertyRepository.GetPropertyByIdAsync(id);
+
+      // Si la propriété n'existe pas, renvoyez une erreur 404
+      if (property == null)
+      {
+        return NotFound();
+      }
+
+      // Vérifiez si l'utilisateur actuellement connecté est celui qui a posté la propriété
+      var currentUserId = GetUserId();
+      if (property.PostedBy != currentUserId)
+      {
+        return Unauthorized("You are not authorized to delete this property.");
+      }
 
       uow.PropertyRepository.DeletePropertyByIdAsync(id);
       await uow.SaveAsync();

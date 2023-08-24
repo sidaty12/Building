@@ -22,8 +22,12 @@ export class PropertyListComponent implements OnInit {
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 
   ngOnInit(): void {
+    this.loadProperties();
+  }
+
+  loadProperties() : void {
     if (this.route.snapshot.url.toString()) {
-      this.SellRent = 'Rent'; // Means we are on rent-property URL else we are on base URL
+      this.SellRent = 'Rent'; // Check if we are on rent-property URL else we are on base URL
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
         data => {
@@ -34,7 +38,10 @@ export class PropertyListComponent implements OnInit {
         console.log('httperror:');
         console.log(error);
       }
-    );
+  )}
+  
+  onPropertyDeleted() {
+    this.loadProperties();
   }
 
   OnCityFilter(){

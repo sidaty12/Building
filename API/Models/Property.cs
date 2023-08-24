@@ -8,6 +8,7 @@ namespace API.Models
 {
   public class Property : BaseEntity
     {
+    
         public string SellRent { get; set; }
         public string Name { get; set; }
         public int PropertyTypeId { get; set; }
