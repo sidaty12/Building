@@ -133,7 +133,6 @@
       }
     }
   },
-  "defaultProject": "my-first-app",
   "cli": {
     "analytics": "87c15730-0a10-4820-9558-9d300afa8a43"
   }
