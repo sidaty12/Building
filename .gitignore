@@ -12,6 +12,9 @@ dist/
 # Angular cache
 .angular/cache/
 
+# Node modules
+node_modules/
+
 
 # .NET Core
 bin/
