@@ -49,6 +49,26 @@ getProperty(id:number){
     return this.http.post(this.baseUrl + '/property/add', property, httpOptions);
   }
 
+  updateProperty(property: Property) {
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+        })
+    };
+    return this.http.patch<Property>(`${this.baseUrl}/property/update/${property.id}`, property, httpOptions);
+}
+
+// Méthode pour obtenir les propriétés de l'utilisateur connecté
+getUserProperties(): Observable<Property[]> {
+  const httpOptions = {
+      headers: new HttpHeaders({
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+      })
+  };
+  return this.http.get<Property[]>(`${this.baseUrl}/property/userproperties`, httpOptions);
+}
+
+
   deleteProperty(propertyId: number) {
     const httpOptions = {
         headers: new HttpHeaders({

@@ -47,14 +47,24 @@ namespace API.Controllers
       return Ok(propertyDTO);
     }
 
+    [HttpGet("userproperties")]
+    
+    public async Task<IActionResult> GetUserProperties()
+    {
+      var userId = GetUserId();
+      var properties = await uow.PropertyRepository.GetUserPropertiesAsync(userId);
+      var propertyListDTO = mapper.Map<IEnumerable<PropertyListDto>>(properties);
+      return Ok(propertyListDTO);
+    }
+
     [HttpPost("add")]
     [Authorize]
     public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
     {
       var property = mapper.Map<Property>(propertyDto);
       var userId = GetUserId();
-      property.PostedBy = userId;
-      property.LastUpdatedBy = userId;
+      property.PostedBy = userId.HasValue ? userId.Value : 0; // Vous pouvez choisir une autre valeur par défaut si nécessaire
+      property.LastUpdatedBy = userId.HasValue ? userId.Value : 0;
       uow.PropertyRepository.AddProperty(property);
       await uow.SaveAsync();
       return StatusCode(201);

@@ -63,7 +63,18 @@ namespace API.Data.Repo
 
             return properties;
         }
-
-
+    public async Task<IEnumerable<Property>> GetUserPropertiesAsync(int? userId)
+    {
+      var properties = await dc.Properties
+          .Include(p => p.PropertyType)
+          .Include(p => p.City)
+          .Include(p => p.FurnishingType)
+          .Include(p => p.Photos)
+          .Where(p => p.PostedBy == userId)
+          .ToListAsync();
+      return properties;
     }
+
+
+  }
 }

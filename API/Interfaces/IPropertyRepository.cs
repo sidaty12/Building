@@ -8,8 +8,11 @@ namespace API.Interfaces
     {
         Task<IEnumerable<Property>> GetPropertiesAsync(string sellRent);
         Task<Property> GetPropertyDetailAsync(int id);
-        Task<Property> GetPropertyByIdAsync(int id);
-        void AddProperty(Property property);
+       Task<Property> GetPropertyByIdAsync(int id);
+
+    Task<IEnumerable<Property>> GetUserPropertiesAsync(int? userId);
+
+    void AddProperty(Property property);
         void DeletePropertyByIdAsync(int id);
     }
 }

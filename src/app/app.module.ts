@@ -30,6 +30,8 @@ import { PropertyDetailResolverService } from './property/property-detail/Proper
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
 import { FileUploadModule } from 'ng2-file-upload';
+import { EditPropertyComponent } from './property/edit-property/edit-property.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const appRoutes: Routes = [
@@ -41,8 +43,9 @@ const appRoutes: Routes = [
                     resolve: {prp: PropertyDetailResolverService}},
 {path: 'user/login', component: UserLoginComponent},
 {path: 'user/register', component: UserRegisterComponent},
-{path: '**', component: PropertyListComponent}
-
+{ path: 'dashboard', component: DashboardComponent },
+{ path: 'edit-property/:id', component: EditPropertyComponent },
+{path: '**', component: PropertyListComponent},
 ];
 
 @NgModule({
@@ -57,7 +60,9 @@ const appRoutes: Routes = [
       PropertyListComponent,
       PhotoEditorComponent,
       FilterPipe,
-      SortPipe
+      SortPipe,
+      EditPropertyComponent,
+      DashboardComponent
 
    ],
   imports: [

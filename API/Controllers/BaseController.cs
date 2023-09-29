@@ -8,9 +8,16 @@ namespace API.Controllers
   [ApiController]
   public class BaseController : ControllerBase
   {
-    protected int GetUserId()
+    protected int? GetUserId()
     {
-      return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+      var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+      if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+      {
+        return userId;
+      }
+
+      return null; // L'utilisateur n'est pas authentifié ou l'ID n'a pas pu être extrait.
     }
   }
 }

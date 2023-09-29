@@ -1,5 +1,7 @@
 .card {
   min-height: 400px;
+  margin-bottom: 20px; /* Ajoutez de la marge en bas de chaque carte */
+
 }
 
 .card-body h1 {
