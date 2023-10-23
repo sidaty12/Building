@@ -9,6 +9,7 @@ using API.Dtos;
 using API.Interfaces;
 using API.Models;
 using System;
+using API.Data;
 
 namespace API.Controllers
 {
@@ -58,7 +59,7 @@ namespace API.Controllers
     }
 
     [HttpPost("add")]
-    [Authorize]
+  //[Authorize]
     public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
     {
       var property = mapper.Map<Property>(propertyDto);
@@ -69,6 +70,38 @@ namespace API.Controllers
       await uow.SaveAsync();
       return StatusCode(201);
     }
+
+    [HttpPatch("update/{id}")]
+   // [Authorize]
+    public async Task<IActionResult> UpdateProperty(int id, [FromBody] PropertyUpdateDto propertyUpdateDto)
+    {
+      // Vérifiez si la propriété avec l'ID spécifié existe
+      var existingProperty = await uow.PropertyRepository.GetPropertyByIdAsync(id);
+      if (existingProperty == null)
+      {
+        return NotFound();
+      }
+
+      // Vérifiez si l'utilisateur actuellement connecté est autorisé à mettre à jour cette propriété
+     /* var currentUserId = GetUserId();
+      if (existingProperty.PostedBy != currentUserId)
+      {
+        return Unauthorized("Vous n'êtes pas autorisé à mettre à jour cette propriété.");
+      }
+     */
+      // Utilisez AutoMapper pour mapper les données de propertyUpdateDto à existingProperty
+      mapper.Map(propertyUpdateDto, existingProperty);
+
+      // Appelez la méthode de sauvegarde de l'unité de travail (uow) pour enregistrer les modifications dans la base de données
+      if (await uow.SaveAsync())
+      {
+        // La mise à jour a réussi
+        return Ok();
+      }
+
+      return BadRequest("La mise à jour de la propriété a échoué.");
+    }
+
 
     [HttpDelete("delete/{id}")]
     [Authorize]

@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
-import { IPropertyBase } from 'src/app/model/ipropertybase';
-import { Property } from 'src/app/model/property';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HousingService } from 'src/app/services/housing.service';
-import { AlertifyService } from 'src/app/services/alertify.service';
-import { DatePipe } from '@angular/common';
-import { Ikeyvaluepaire } from 'src/app/model/ikeyvaluepaire';
+import { Property } from 'src/app/model/property';
+import { PropertyType } from 'src/app/model/PropertyType';
+import { FurnishingType } from 'src/app/model/FurnishingType';
 
 @Component({
   selector: 'app-edit-property',
@@ -15,93 +12,65 @@ import { Ikeyvaluepaire } from 'src/app/model/ikeyvaluepaire';
   styleUrls: ['./edit-property.component.css']
 })
 export class EditPropertyComponent implements OnInit {
-  @ViewChild('formTabs') formTabs: TabsetComponent;
   editPropertyForm: FormGroup;
   property: Property;
-
-  propertyTypes: Ikeyvaluepaire[];
-  furnishTypes: Ikeyvaluepaire[];
-  CityList : any[];
+  propertyTypes: PropertyType;
+  furnishingTypes: FurnishingType;
 
   constructor(
     private route: ActivatedRoute,
-    private datePipe: DatePipe,
-    private fb: FormBuilder,
     private router: Router,
     private housingService: HousingService,
-    private alertify: AlertifyService
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    // Récupérer l'ID de la propriété depuis l'URL
     const propertyId = +this.route.snapshot.params['id'];
 
+    // Appeler le service pour récupérer les données de la propriété
     this.housingService.getProperty(propertyId).subscribe(data => {
       this.property = data;
+      console.log("prperty", this.property )
       this.initForm();
-    });
-
-    this.housingService.getAllCities().subscribe(data => {
-      this.CityList = data;
-    });
-
-    this.housingService.getPropertyTypes().subscribe(data => {
-      this.propertyTypes = data;
-    });
-
-    this.housingService.getFurnishingTypes().subscribe(data => {
-      this.furnishTypes = data;
     });
   }
 
   initForm() {
+    
+    // Initialiser le formulaire avec les données de la propriété
     this.editPropertyForm = this.fb.group({
-      BasicInfo: this.fb.group({
-        SellRent: [this.property.sellRent, Validators.required],
-        BHK: [this.property.bhk, Validators.required],
-        PType: [this.property.propertyTypeId, Validators.required],
-        FType: [this.property.furnishingTypeId, Validators.required],
-        Name: [this.property.name, Validators.required],
-        City: [this.property.CityId, Validators.required]
-      }),
-      PriceInfo: this.fb.group({
-        Price: [this.property.price, Validators.required],
-        BuiltArea: [this.property.builtArea, Validators.required],
-        CarpetArea: [this.property.carpetArea],
-        Security: [this.property.security],
-        Maintenance: [this.property.maintenance]
-      }),
-      AddressInfo: this.fb.group({
-        FloorNo: [this.property.floorNo],
-        TotalFloor: [this.property.totalFloors],
-        Address: [this.property.address, Validators.required],
-        LandMark: [this.property.address2]
-      }),
-      OtherInfo: this.fb.group({
-        RTM: [this.property.readyToMove, Validators.required],
-        PossessionOn: [this.datePipe.transform(this.property.estPossessionOn, 'MM/dd/yyyy'), Validators.required],
-      //  AOP: [this.property.aop],
-        Gated: [this.property.gated],
-        MainEntrance: [this.property.mainEntrance],
-        Description: [this.property.description]
-      })
+      sellRent: [this.property.sellRent, Validators.required],
+      name: [this.property.name, Validators.required],
+      price: [this.property.price, Validators.required],
+      bhk: [this.property.bhk, Validators.required],
+      builtArea: [this.property.builtArea, Validators.required],
+       readyToMove: [this.property.readyToMove, Validators.required],
     });
   }
 
   onUpdate() {
     if (this.editPropertyForm.valid) {
-      this.property = Object.assign(this.property, this.editPropertyForm.value);
-      this.housingService.updateProperty(this.property).subscribe(() => {
-        this.alertify.success('La propriété a été mise à jour avec succès.');
+      // Obtenir les données modifiées du formulaire
+      const updatedData = this.editPropertyForm.value;
+      updatedData.id = this.property.id;
+      // Appeler le service pour mettre à jour la propriété
+      this.housingService.updateProperty(updatedData).subscribe(() => {
+        // Rediriger vers la liste des propriétés après la mise à jour réussie
         this.router.navigate(['/property-list']);
       }, error => {
-        this.alertify.error('Une erreur s\'est produite lors de la mise à jour de la propriété.');
+        // Gérer les erreurs de mise à jour
+        console.error(error);
+        // Afficher un message d'erreur à l'utilisateur
       });
     } else {
-      this.alertify.error('Veuillez vérifier le formulaire pour des erreurs.');
+      // Gérer les erreurs de validation du formulaire
+      alert('Veuillez vérifier le formulaire pour des erreurs.');
     }
   }
 
   onCancel() {
+    // Annuler la modification et revenir à la liste des propriétés
     this.router.navigate(['/property-list']);
   }
 }

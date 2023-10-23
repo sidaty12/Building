@@ -17,6 +17,7 @@ namespace API.Helpers
 
       CreateMap<Photo, PhotoDto>().ReverseMap();
 
+      CreateMap<PropertyUpdateDto, Property>().ReverseMap();
 
 
       CreateMap<Property, PropertyListDto>()
